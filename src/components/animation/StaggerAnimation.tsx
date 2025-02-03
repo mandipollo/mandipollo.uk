@@ -1,10 +1,14 @@
 import React, { FC } from "react";
 import { motion } from "framer-motion";
 
-const StaggeredAnimationText: FC<{ text: string; className: string }> = ({
+interface StaggeredAnimationTextProps {
+	text: string;
+	className?: string;
+}
+const StaggeredAnimationText = ({
 	text,
 	className,
-}) => {
+}: StaggeredAnimationTextProps) => {
 	//   to easily reuse the animation props
 	const AnimationProps = {
 		initial: { opacity: 0, y: 0 },
@@ -22,7 +26,7 @@ const StaggeredAnimationText: FC<{ text: string; className: string }> = ({
 				className={className}
 				initial="initial"
 				animate="animate"
-				transition={{ staggerChildren: 0.11 }}
+				transition={{ staggerChildren: 0.09 }}
 			>
 				{/* render words */}
 				{text.split(" ").map((word, index) => (

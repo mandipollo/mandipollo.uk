@@ -1,0 +1,91 @@
+import React from "react";
+import DottedButton from "../../../components/ui/DottedButtons";
+import SkillButton from "../../../components/ui/SkillButton";
+
+const Tech = () => {
+	return (
+		<section className="relative flex flex-col py-20 min-h-screen justify-center items-center gap-4 px-24 bg-gray-100">
+			<div className="text-center flex flex-col gap-2">
+				<p className="font-jetBrains text-xs text-gray-400">
+					First impressions matter more then ever
+				</p>
+				<h2 className="text-4xl">TECH STACKS & TOOLS </h2>
+			</div>
+			<div className="grid grid-cols-2 gap-2 bg-white p-4 w-full rounded-md text-sm">
+				<div className="bg-gray-100 rounded-md flex flex-col gap-4 p-4">
+					<p className="text-xs text-gray-400 font-jetBrains">Projects:</p>
+					<div className="flex flex-row space-x-2">
+						<DottedButton
+							text="TASKDOM"
+							bgColor="bg-white"
+							borderColor="border-slate-300"
+						/>
+						<DottedButton
+							text="URBANTHREADS"
+							bgColor="bg-white"
+							borderColor="border-slate-300"
+						/>
+						<DottedButton
+							text="ESTATE"
+							bgColor="bg-white"
+							borderColor="border-slate-300"
+						/>
+					</div>
+					<div className="flex flex-row space-x-2">
+						<DottedButton
+							text="MUSBRARY"
+							bgColor="bg-white"
+							borderColor="border-slate-300"
+						/>
+						<DottedButton
+							text="LUMISHADE"
+							bgColor="bg-white"
+							borderColor="border-slate-300"
+						/>
+					</div>
+				</div>
+				<div className="bg-[#121212] rounded-md flex flex-wrap gap-2 p-4 text-white text-xs">
+					<SkillButton text="JS" bgColor="bg-yellow-500" />
+					<SkillButton text="TYPESCRIPT" bgColor="bg-[#234A84]" />
+					<SkillButton text="REACT" bgColor="bg-[#61DAFB]" />
+
+					<SkillButton
+						text="NEXTJS"
+						bgColor="bg-white"
+						textColor="text-black"
+					/>
+
+					<SkillButton text="NODEJS" bgColor="bg-[#339933]" />
+					<SkillButton
+						text="EXPRESS"
+						bgColor="bg-white"
+						textColor="text-black"
+					/>
+					<SkillButton
+						text="MONGODB"
+						bgColor="bg-white"
+						textColor="text-black"
+					/>
+					<SkillButton text="MONGOOSE" bgColor="bg-[#880000]" />
+					<SkillButton text="REACT-ROUTER" bgColor="bg-[#262626]" />
+					<SkillButton text="REDUX/TOOLKIT" bgColor="bg-[#764ABC]" />
+					<SkillButton text="JEST/REACT" bgColor="bg-[#C21325]" />
+
+					<SkillButton text="CSS" bgColor="bg-[#1572B6]" />
+					<SkillButton text="SASS/LESS" bgColor="bg-[#CC6699]" />
+					<SkillButton text="TAILWIND" bgColor="bg-[#38BDF8]" />
+					<SkillButton text="MATERIAL UI" bgColor="bg-[#0081CB]" />
+					<SkillButton text="HTML5" bgColor="bg-[#E34F26]" />
+					<SkillButton text="FRAMER MOTION" bgColor="bg-[#FF0050]" />
+
+					<SkillButton text="GIT" bgColor="bg-[#F05032]" />
+					<SkillButton text="GOOGLE CLOUD" bgColor="bg-[#4285F4]" />
+					<SkillButton text="AWS" bgColor="bg-[#FF9900]" />
+					<SkillButton text="CI/CD" bgColor="bg-[#262626]" />
+				</div>
+			</div>
+		</section>
+	);
+};
+
+export default Tech;

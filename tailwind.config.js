@@ -3,6 +3,12 @@ export default {
 	content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 	theme: {
 		extend: {
+			colors: {
+				brightOrange: "#FE4400",
+			},
+			fontFamily: {
+				jetBrains: ["jetBrains mono", "sans-serif"],
+			},
 			keyframes: {
 				bgMove: {
 					"0%": { backgroundPosition: "100% 0%" },
