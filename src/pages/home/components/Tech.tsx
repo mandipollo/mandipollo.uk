@@ -2,7 +2,7 @@ import React from "react";
 import DottedButton from "../../../components/ui/DottedButtons";
 import SkillButton from "../../../components/ui/SkillButton";
 
-const Tech = () => {
+const Tech: React.FC = () => {
 	return (
 		<section className="relative flex flex-col py-20 min-h-screen justify-center items-center gap-4 px-24 bg-gray-100">
 			<div className="text-center flex flex-col gap-2">

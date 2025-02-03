@@ -1,43 +1,42 @@
-import { FC, useEffect, useRef, useState } from "react";
+import React from "react";
 
 import Hero from "./components/Hero";
 import Tech from "./components/Tech";
 import Projects from "./components/Projects";
-import ContactForm from "../../components/form/ContactForm";
 import ContactPage from "./components/ContactPage";
 
-const HomePage: FC = () => {
+const HomePage: React.FC = () => {
 	// find the path length of the line and give the offset the same length to hide it , when user scrolls minus the offset in % to the screen vh
-	const [pathLength, setPathLength] = useState<number>(0);
-	const [dashOffset, setDashOffset] = useState<number>(0);
-	const [scrollY, setScrollY] = useState<number>(0);
+	// const [pathLength, setPathLength] = useState<number>(0);
+	// const [dashOffset, setDashOffset] = useState<number>(0);
+	// const [scrollY, setScrollY] = useState<number>(0);
 
-	const pathRef = useRef<SVGPathElement>(null);
+	// const pathRef = useRef<SVGPathElement>(null);
 
-	useEffect(() => {
-		const handleScroll = () => {
-			if (pathRef.current) {
-				const length = pathRef.current.getTotalLength();
-				setPathLength(length);
-				setDashOffset(length);
-				const scrollPercentage =
-					window.scrollY /
-					(window.document.documentElement.scrollHeight - window.innerHeight);
+	// useEffect(() => {
+	// 	const handleScroll = () => {
+	// 		if (pathRef.current) {
+	// 			const length = pathRef.current.getTotalLength();
+	// 			setPathLength(length);
+	// 			setDashOffset(length);
+	// 			const scrollPercentage =
+	// 				window.scrollY /
+	// 				(window.document.documentElement.scrollHeight - window.innerHeight);
 
-				setScrollY(scrollPercentage);
-				const drawLength = Number.isNaN(scrollPercentage)
-					? 0
-					: length * scrollPercentage;
+	// 			setScrollY(scrollPercentage);
+	// 			const drawLength = Number.isNaN(scrollPercentage)
+	// 				? 0
+	// 				: length * scrollPercentage;
 
-				setDashOffset(length - drawLength);
-			}
-		};
-		window.addEventListener("scroll", handleScroll);
+	// 			setDashOffset(length - drawLength);
+	// 		}
+	// 	};
+	// 	window.addEventListener("scroll", handleScroll);
 
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
-		};
-	}, []);
+	// 	return () => {
+	// 		window.removeEventListener("scroll", handleScroll);
+	// 	};
+	// }, []);
 
 	return (
 		<main className="flex h-full flex-col bg-[#F7F7F7]">

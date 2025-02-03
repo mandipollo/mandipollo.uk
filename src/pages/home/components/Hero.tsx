@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import HoverButton from "../../../components/ui/HoverButton";
-import StaggeredAnimationText from "../../../components/animation/StaggerAnimation";
 
-const Hero = () => {
+const Hero: React.FC = () => {
 	const [time, setTime] = useState<string>("");
 
 	useEffect(() => {

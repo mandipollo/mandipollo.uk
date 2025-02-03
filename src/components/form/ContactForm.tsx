@@ -25,7 +25,7 @@ const ContactForm = () => {
 		}
 	};
 	return (
-		<section className="translate-y-2 flex gap-4 flex-col max-w-[40em] shadow-lg rounded-md w-full text-xs text-gray-400 bg-[#1F1F1F]">
+		<section className="flex gap-4 flex-col max-w-[40em] shadow-lg rounded-md w-full text-xs text-gray-400 bg-[#1F1F1F]">
 			<div className="grid grid-cols-2">
 				<div className="flex justify-center items-center p-4">
 					<button className="text-md text-gray-200">REQUEST A QUOTE</button>

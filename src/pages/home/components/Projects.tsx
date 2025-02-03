@@ -3,7 +3,7 @@ import SkillButton from "../../../components/ui/SkillButton";
 import HoverButton from "../../../components/ui/HoverButton";
 import DottedSpan from "../../../components/ui/DottedSpan";
 
-const Projects = () => {
+const Projects: React.FC = () => {
 	return (
 		<section className="flex flex-col py-20 justify-center items-center gap-4 px-24 ">
 			<p className="font-jetBrains text-xs text-gray-400">Lots of coffee ..</p>

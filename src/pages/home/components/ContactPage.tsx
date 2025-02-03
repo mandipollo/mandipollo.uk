@@ -1,7 +1,7 @@
 import React from "react";
 import ContactForm from "../../../components/form/ContactForm";
 
-const ContactPage = () => {
+const ContactPage: React.FC = () => {
 	return (
 		<section className="flex flex-row w-screen bg-gradient-to-b from-black from-60% via-[#0C0C0C] via-90% to-[#1E1E1E] ">
 			<div className="mt-14 flex border-y-[0.5px] border-gray-600 "></div>
