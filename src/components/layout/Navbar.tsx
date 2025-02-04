@@ -38,6 +38,7 @@ const Navbar = () => {
 						textColor="text-white"
 						borderRadius="rounded-2xl"
 						image="/arrow-right.svg"
+						hoverBgColor="hover:bg-brightOrange"
 					/>
 				</div>
 			</nav>

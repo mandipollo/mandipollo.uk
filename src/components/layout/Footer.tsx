@@ -14,15 +14,11 @@ const Footer: React.FC = () => {
 					nyc
 				</div>
 			</div>
-			<div className="grid grid-cols-3 border-t-[0.5px] border-gray-600">
+			<div className="grid grid-cols-2 border-t-[0.5px] border-gray-600">
 				<div className="flex justify-center items-center p-6">
-					MANDIPOLLO 2025. ALL RIGHTS RESERVED
+					MANDIPOLLO 2025. ALL RIGHTS RESERVED.
 				</div>
-				<div className="flex justify-center items-center p-6">
-					<figure>
-						<img src="/logo.svg" className="h-6 w-6" alt="" />
-					</figure>
-				</div>
+
 				<div className="flex justify-center items-center gap-4 p-6">
 					<p>DRIBBLE</p>
 					<p>LINKEDIN</p>

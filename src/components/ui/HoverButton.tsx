@@ -3,6 +3,7 @@ interface HoverButtonProps {
 	afterText?: string;
 	image?: string;
 	bgColor?: string;
+	hoverBgColor?: string;
 	textColor?: string;
 	borderRadius?: string;
 }
@@ -12,13 +13,14 @@ const HoverButton = ({
 	afterText,
 	image,
 	bgColor,
+	hoverBgColor,
 	textColor,
 	borderRadius,
 }: HoverButtonProps) => {
 	return (
 		<button
 			type="button"
-			className={`${bgColor} ${textColor} ${borderRadius} relative inline-flex items-center justify-center overflow-hidden px-4 py-2 group`}
+			className={`${bgColor} ${textColor} ${borderRadius} ${hoverBgColor} relative inline-flex items-center justify-center overflow-hidden px-4 py-2 group`}
 		>
 			<span className=" flex flex-row transition-all duration-500 ease-in-out group-hover:opacity-0 group-hover:-translate-y-full">
 				{text}

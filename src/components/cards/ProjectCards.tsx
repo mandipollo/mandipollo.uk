@@ -8,6 +8,8 @@ interface ProjectCardProps {
 	imageUrl: string;
 	wrapper1Bg: string;
 	wrapper2Bg: string;
+	backgroundTo: string;
+	backgroundFrom: string;
 }
 
 const imageVariants = {
@@ -16,7 +18,7 @@ const imageVariants = {
 	}),
 	animate: (isOdd: boolean) => ({
 		x: isOdd ? "0px" : "0px", // Move left for odd, right for even
-		transition: { duration: 1, ease: "easeInOut" },
+		transition: { duration: 0.8, ease: "easeInOut" },
 	}),
 };
 
@@ -27,7 +29,7 @@ const wrapperVariants1 = {
 	}),
 	animate: (isOdd: boolean) => ({
 		x: isOdd ? "-100%" : "100%", // Move left for odd, right for even
-		transition: { duration: 1.5, ease: "easeInOut" },
+		transition: { duration: 1, ease: "easeInOut" },
 	}),
 };
 
@@ -38,7 +40,7 @@ const wrapperVariants = {
 	}),
 	animate: (isOdd: boolean) => ({
 		x: isOdd ? "-100%" : "100%", // Same direction as wrapper1
-		transition: { duration: 0.8, ease: "easeInOut" },
+		transition: { duration: 0.4, ease: "easeInOut" },
 	}),
 };
 
@@ -49,6 +51,8 @@ const ProjectCards: React.FC<ProjectCardProps> = ({
 	imageUrl,
 	wrapper1Bg,
 	wrapper2Bg,
+	backgroundFrom,
+	backgroundTo,
 }) => {
 	const containerRef = useRef<HTMLLIElement>(null);
 	const { scrollYProgress } = useScroll({
@@ -69,7 +73,10 @@ const ProjectCards: React.FC<ProjectCardProps> = ({
 	const wrapperRef1 = useRef<HTMLDivElement>(null);
 
 	return (
-		<li ref={containerRef} className="flex w-full h-full ">
+		<li
+			ref={containerRef}
+			className={`bg-gradient-to-b ${backgroundFrom} ${backgroundTo}  flex w-full h-full `}
+		>
 			<article className="relative grid grid-cols-2 w-full justify-center min-h-[50rem] items-center">
 				{!isOdd && (
 					<div className="flex flex-col gap-4 p-10 justify-center items-end">

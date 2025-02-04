@@ -6,8 +6,15 @@ const ContactPage: React.FC = () => {
 		<section className="flex flex-row w-screen bg-gradient-to-b from-black from-60% via-[#0C0C0C] via-90% to-[#1E1E1E] ">
 			<div className="mt-14 flex border-y-[0.5px] border-gray-600 "></div>
 			<div className="mt-14 flex flex-1 border-y-[0.5px] border-gray-600 flex-col">
-				<div className="mx-24 gap-10 pt-48 border-x-[0.5px] border-gray-600 flex-col  flex flex-1 justify-center items-center">
-					<div className="text-white max-w-[40em] w-full text-center text-4xl font-bold">
+				<div className="mx-24 gap-10 relative pt-48 border-x-[0.5px] border-gray-600 flex-col  flex flex-1 justify-center items-center">
+					<video
+						className="w-full h-full absolute top-0 bottom-0 left-0"
+						src="https://res.cloudinary.com/dbg68gzpx/video/upload/v1738698815/bgVidoe_rhixav.mp4"
+						autoPlay
+						loop
+						muted
+					></video>
+					<div className="text-white max-w-[40em] w-full text-center text-4xl font-bold z-10">
 						<h4 className="">READY TO JOIN</h4>
 						<h4>
 							THE {""}

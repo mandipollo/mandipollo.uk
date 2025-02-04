@@ -10,7 +10,8 @@ const Projects: React.FC = () => {
 			description: "E-commerce web app with guest/member and admin cms.",
 			imageUrl:
 				"https://res.cloudinary.com/dbg68gzpx/image/upload/v1738499780/urbanThreads_pyth2i.webp",
-			backgroundColor: "bg-sky-900",
+			backgroundFrom: "from-slate-600",
+			backgroundTo: "to-slate-700",
 			wrapper1Bg: "bg-teal-900",
 			wrapper2Bg: "bg-red-900",
 		},
@@ -20,7 +21,8 @@ const Projects: React.FC = () => {
 			description: "Webshop frontend",
 			imageUrl:
 				"https://res.cloudinary.com/dbg68gzpx/image/upload/v1738499821/lumishade_sp32sm.webp",
-			backgroundColor: "bg-slate-900",
+			backgroundFrom: "from-slate-700",
+			backgroundTo: "to-slate-800",
 			wrapper1Bg: "bg-orange-900",
 			wrapper2Bg: "bg-green-900",
 		},
@@ -30,7 +32,8 @@ const Projects: React.FC = () => {
 			description: "Real estate tracker",
 			imageUrl:
 				"https://res.cloudinary.com/dbg68gzpx/image/upload/v1738499797/estate_el0plo.webp",
-			backgroundColor: "bg-teal-900",
+			backgroundFrom: "from-slate-800",
+			backgroundTo: "to-slate-900",
 			wrapper1Bg: "bg-cyan-900",
 			wrapper2Bg: "bg-blue-900",
 		},
@@ -40,20 +43,23 @@ const Projects: React.FC = () => {
 			description: "Team task management tool",
 			imageUrl:
 				"https://res.cloudinary.com/dbg68gzpx/image/upload/v1738499810/taskdom_ibtmr6.webp",
-			backgroundColor: "bg-black",
+			backgroundFrom: "from-slate-900",
+			backgroundTo: "to-black",
 			wrapper1Bg: "bg-red-900",
 			wrapper2Bg: "bg-orange-900",
 		},
 	];
 
 	return (
-		<section className="flex flex-col w-full justify-center items-center gap-4 bg-gray-100">
+		<section className="flex flex-col w-full justify-center items-center gap-4 bg-gray-100 text-white">
 			<p className="font-jetBrains text-xs text-gray-400">Lots of coffee ..</p>
-			<h2 className="text-6xl">PROJECTS</h2>
+			<h2 className="text-6xl text-black">PROJECTS</h2>
 
 			<ul className="flex relative w-full flex-col ">
 				{projectData.map(project => (
 					<ProjectCards
+						backgroundFrom={project.backgroundFrom}
+						backgroundTo={project.backgroundTo}
 						key={project.id}
 						id={project.id}
 						title={project.title}

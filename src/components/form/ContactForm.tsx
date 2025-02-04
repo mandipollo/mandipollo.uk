@@ -1,15 +1,18 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import ensureError from "../../utilities/ensureError";
 
 const ContactForm = () => {
+	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+	const [isSuccess, setIsSuccess] = useState<boolean>(false);
 	const form = useRef<HTMLFormElement | null>(null);
 
 	const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		setIsSubmitting(true);
 		if (!form.current) return;
-
 		try {
-			await emailjs.sendForm(
+			const response = await emailjs.sendForm(
 				"service_tjh6uad",
 				"template_h4w6yvg",
 				form.current,
@@ -18,21 +21,25 @@ const ContactForm = () => {
 				}
 			);
 
-			form.current.reset();
-		} catch (err) {
-			if (err instanceof Error) {
+			if (response.status) {
+				setIsSuccess(true);
+				form.current.reset();
+			} else {
+				throw new Error(response.text);
 			}
+		} catch (err) {
+			ensureError(err);
+		} finally {
+			setIsSubmitting(false);
 		}
 	};
 	return (
-		<section className="flex gap-4 flex-col max-w-[40em] shadow-lg rounded-md w-full text-xs text-gray-400 bg-[#1F1F1F]">
+		<section className="flex gap-4 z-10 flex-col max-w-[40em] shadow-lg rounded-md w-full text-xs text-gray-400 ">
 			<div className="grid grid-cols-2">
 				<div className="flex justify-center items-center p-4">
 					<button className="text-md text-gray-200">REQUEST A QUOTE</button>
 				</div>
-				<div className="flex justify-center items-center bg-black p-4">
-					<button className="text-md text-gray-400">BOOK A CALL</button>
-				</div>
+				<div className="flex justify-center items-center bg-transparent p-4"></div>
 			</div>
 
 			<form
@@ -82,14 +89,15 @@ const ContactForm = () => {
 					<option value="10000-50000">£10k-50k</option>
 				</select>
 				<button
+					disabled={isSubmitting}
 					aria-label="submit form button"
 					className=" bg-brightOrange rounded-3xl p-3 text-gray-200  "
 				>
-					SEND MESSAGE
+					{isSuccess ? "THANK YOU" : "SEND MESSAGE"}
 				</button>
 				<p className="text-xs">
 					By clicking this button, you agree to the site's Privacy Policy and
-					consent to the processing sof your personal data.
+					consent to the processing of your personal data.
 				</p>
 			</form>
 		</section>
