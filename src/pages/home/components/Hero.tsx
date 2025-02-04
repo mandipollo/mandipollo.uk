@@ -23,9 +23,9 @@ const Hero: React.FC = () => {
 	}, [time]);
 
 	return (
-		<section className="min-w-screen min-h-screen flex flex-col ">
-			<div className="mt-14 flex flex-1 border flex-col">
-				<div className="mx-24 border-x flex flex-1">
+		<section className="min-w-screen min-h-screen flex justify-center items-center flex-col w-full ">
+			<div className="mt-14 flex max-w-5xl justify-center items-center flex-1 border-y flex-col w-full">
+				<div className="mx-24 border-x flex justify-center items-center flex-1 w-full">
 					<div className="flex justify-center items-center flex-col gap-2 flex-1">
 						<span className="text-6xl font-extrabold">MANDIP GURUNG</span>
 						<span className="text-6xl font-semibold">FRONTEND DEVELOPER</span>

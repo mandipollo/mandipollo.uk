@@ -4,7 +4,7 @@ import SkillButton from "../../../components/ui/SkillButton";
 
 const Tech: React.FC = () => {
 	return (
-		<section className="relative flex flex-col py-20 min-h-screen justify-center items-center gap-4 px-24 bg-gray-100">
+		<section className="relative flex flex-col py-20 h-screen justify-center items-center gap-4 px-24 bg-gray-100">
 			<div className="text-center flex flex-col gap-2">
 				<p className="font-jetBrains text-xs text-gray-400">
 					First impressions matter more then ever
