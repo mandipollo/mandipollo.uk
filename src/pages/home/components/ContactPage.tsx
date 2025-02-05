@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useRef } from "react";
 import ContactForm from "../../../components/form/ContactForm";
+import useThreadHeight from "../../../hooks/useThreadHeight";
+import Thread from "../../../components/ui/Thread";
 
 const ContactPage: React.FC = () => {
+	const leftLineRef = useRef<HTMLDivElement>(null);
+
+	const { numberOfThreads } = useThreadHeight({ leftLineRef });
 	return (
-		<section className="flex flex-row w-screen bg-gradient-to-b from-black from-60% via-[#0C0C0C] via-90% to-[#1E1E1E] ">
-			<div className="mt-14 flex border-y-[0.5px] border-gray-600 "></div>
-			<div className="mt-14 flex flex-1 border-y-[0.5px] border-gray-600 flex-col">
-				<div className="mx-24 gap-10 relative pt-48 border-x-[0.5px] border-gray-600 flex-col  flex flex-1 justify-center items-center">
+		<section className="flex flex-row w-screen bg-black ">
+			<div
+				ref={leftLineRef}
+				className=" flex w-28 flex-col justify-between border-y-[0.5px] border-gray-600 "
+			>
+				{Array.from({ length: numberOfThreads }).map((_, index) => (
+					<Thread index={index} key={index} />
+				))}
+			</div>
+			<div className=" flex flex-1 border-y-[0.5px] border-gray-600 flex-col">
+				<div className=" gap-10 relative pt-48 border-x-[0.5px] border-gray-600 flex-col  flex flex-1 justify-center items-center">
 					<video
 						className="w-full h-full absolute top-0 bottom-0 left-0"
 						src="https://res.cloudinary.com/dbg68gzpx/video/upload/v1738698815/bgVidoe_rhixav.mp4"
@@ -24,7 +36,7 @@ const ContactPage: React.FC = () => {
 					<ContactForm />
 				</div>
 			</div>
-			<div className="mt-14 flex border-y-[0.5px] border-gray-600 "></div>
+			<div className=" w-28 flex border-y-[0.5px] border-gray-600 "></div>
 		</section>
 	);
 };

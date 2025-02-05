@@ -1,49 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import HoverButton from "../../../components/ui/HoverButton";
 import DottedSpan from "../../../components/ui/DottedSpan";
 import Thread from "../../../components/ui/Thread";
+import useThreadHeight from "../../../hooks/useThreadHeight";
+import useLocalTime from "../../../hooks/useLocalTime";
 
 const Hero: React.FC = () => {
 	// filter thread markings
 
-	const [sideHeight, setSideHeight] = useState<number>(0);
-
-	const numberOfThreads = Math.ceil(sideHeight / 50);
-
 	const leftLineRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		if (!leftLineRef.current) return;
-		setSideHeight(leftLineRef.current.clientHeight);
-	}, []);
+	const { numberOfThreads } = useThreadHeight({ leftLineRef });
 
 	// local time state
-	const [time, setTime] = useState<string>("");
-
-	useEffect(() => {
-		//Implementing the setInterval method
-		const interval = setInterval(() => {
-			const formatter = new Intl.DateTimeFormat([], {
-				timeZone: "Europe/London",
-				hour: "numeric",
-				minute: "numeric",
-			});
-
-			const time = formatter.format(new Date());
-
-			setTime(time);
-		}, 1000);
-
-		//Clearing the interval
-		return () => clearInterval(interval);
-	}, [time]);
-
+	const { time } = useLocalTime("Europe/London");
 	return (
 		<section className="min-w-screen min-h-screen flex flex-col w-full bg-gray-100 ">
 			<div className="mt-14 flex justify-center items-center flex-1 border-y flex-row ">
 				<div
 					ref={leftLineRef}
-					className="h-full w-24 relative flex flex-col items-stretch justify-between p-1"
+					className="h-full w-28 relative flex flex-col items-stretch justify-between p-1"
 				>
 					{Array.from({ length: numberOfThreads }).map((_, index) => (
 						<Thread index={index} key={index} />
@@ -68,11 +43,7 @@ const Hero: React.FC = () => {
 						</div>
 					</div>
 				</div>
-				<div className="h-full w-24 relative flex flex-col items-stretch justify-between p-1">
-					{Array.from({ length: numberOfThreads }).map((_, index) => (
-						<Thread index={index} key={index} />
-					))}
-				</div>
+				<div className="h-full w-28 p-1"></div>
 			</div>
 			<div className=" h-16 border-b grid grid-cols-[1fr_6fr_1fr] justify-center items-center w-full ">
 				<div></div>
@@ -80,7 +51,8 @@ const Hero: React.FC = () => {
 					<p>LONDON</p>
 					<DottedSpan />
 					<p>{time}</p>
-					<p>ON/OFF</p>
+					<DottedSpan />
+					<p>GMT</p>
 				</div>
 				<div></div>
 			</div>

@@ -2,8 +2,8 @@ import HoverButton from "../ui/HoverButton";
 
 const Navbar = () => {
 	return (
-		<header className="fixed top-6 flex w-full z-50 max-w-7xl">
-			<nav className=" flex flex-row justify-between text-xs items-center mx-4 md:mx-72 w-full bg-white p-4 rounded-2xl border shadow-sm">
+		<header className="fixed top-6 flex w-full z-50 ">
+			<nav className=" flex flex-row justify-between text-xs items-center mx-4 md:mx-60 w-full bg-white p-4 rounded-2xl border shadow-sm">
 				<div className="flex items-center">
 					<figure>
 						<img src="/logo.svg" alt="logo" className="w-8 h-8" />
