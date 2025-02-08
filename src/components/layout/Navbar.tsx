@@ -2,15 +2,15 @@ import HoverButton from "../ui/HoverButton";
 
 const Navbar = () => {
 	return (
-		<header className="fixed top-6 flex w-full z-50 ">
-			<nav className=" flex flex-row justify-between text-xs items-center mx-4 md:mx-60 w-full bg-white p-4 rounded-2xl border shadow-sm">
+		<header className="fixed top-2 md:top-6 flex w-full z-50 justify-center items-center">
+			<nav className=" flex flex-row justify-between text-xs mx-8 items-center max-w-4xl w-full bg-white p-4 rounded-3xl border shadow-sm">
 				<div className="flex items-center">
-					<figure>
+					<figure className="h-full w-full">
 						<img src="/logo.svg" alt="logo" className="w-8 h-8" />
 					</figure>
 				</div>
 
-				<div className="flex justify-center items-center font-jetBrains text-gray-500">
+				<div className="hidden md:flex justify-center items-center font-jetBrains text-gray-500">
 					<ul className="flex flex-row space-x-4 items-center ">
 						<li>
 							<HoverButton text="TECH-STACK" />

@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
 	const { time: timeNyc } = useLocalTime("America/New_York");
 	return (
 		<footer className="flex flex-col w-full bg-black text-gray-400 text-xs font-jetBrains ">
-			<div className="grid grid-cols-[_2fr_6fr_2fr] border-t-[0.5px] border-gray-600">
+			<div className="grid grid-cols-2 md:grid-cols-[_2fr_6fr_2fr] border-t-[0.5px] border-gray-600">
 				<div className="flex justify-center space-x-2 items-center border-l-[0.5px] border-gray-600 p-4">
 					<p>LONDON</p>
 					<DottedSpan />
@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
 					<DottedSpan />
 					<p>GMT</p>
 				</div>
-				<div className="flex justify-center items-center border-l-[0.5px] border-gray-600 p-4"></div>
+				<div className="hidden md:flex justify-center items-center border-l-[0.5px] border-gray-600 p-4"></div>
 				<div className="flex space-x-2 justify-center items-center border-x-[0.5px] border-gray-600 p-4">
 					<p>NYC</p>
 					<DottedSpan />

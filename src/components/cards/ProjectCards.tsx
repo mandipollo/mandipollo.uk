@@ -1,5 +1,6 @@
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import React, { useRef, useState } from "react";
+import { useScreenSize } from "../../hooks/useScreenSize";
 
 interface ProjectCardProps {
 	id: number;
@@ -8,39 +9,37 @@ interface ProjectCardProps {
 	imageUrl: string;
 	wrapper1Bg: string;
 	wrapper2Bg: string;
-	backgroundTo: string;
-	backgroundFrom: string;
 }
 
 const imageVariants = {
 	initial: (isOdd: boolean) => ({
-		x: isOdd ? "-60px" : "60px",
+		x: isOdd ? "-80px" : "80px",
 	}),
 	animate: (isOdd: boolean) => ({
 		x: isOdd ? "0px" : "0px", // Move left for odd, right for even
-		transition: { duration: 0.8, ease: "easeInOut" },
+		transition: { duration: 0.6, ease: "easeIn" },
 	}),
 };
 
 const wrapperVariants1 = {
 	initial: (isOdd: boolean) => ({
-		x: isOdd ? "-60px" : "60px",
+		x: isOdd ? "-80px" : "80px",
 		opacity: 1,
 	}),
 	animate: (isOdd: boolean) => ({
 		x: isOdd ? "-100%" : "100%", // Move left for odd, right for even
-		transition: { duration: 1, ease: "easeInOut" },
+		transition: { duration: 1, ease: "easeIn" },
 	}),
 };
 
 const wrapperVariants = {
 	initial: (isOdd: boolean) => ({
-		x: isOdd ? "30px" : "-30px", // Smaller initial offset
+		x: isOdd ? "-60px" : "60px", // Smaller initial offset
 		opacity: 1,
 	}),
 	animate: (isOdd: boolean) => ({
 		x: isOdd ? "-100%" : "100%", // Same direction as wrapper1
-		transition: { duration: 0.4, ease: "easeInOut" },
+		transition: { duration: 0.6, ease: "easeIn" },
 	}),
 };
 
@@ -51,9 +50,11 @@ const ProjectCards: React.FC<ProjectCardProps> = ({
 	imageUrl,
 	wrapper1Bg,
 	wrapper2Bg,
-	backgroundFrom,
-	backgroundTo,
 }) => {
+	// get screen size
+
+	const screenSize = useScreenSize();
+
 	const containerRef = useRef<HTMLLIElement>(null);
 	const { scrollYProgress } = useScroll({
 		target: containerRef,
@@ -74,12 +75,13 @@ const ProjectCards: React.FC<ProjectCardProps> = ({
 
 	return (
 		<li
+			role="article"
 			ref={containerRef}
-			className={`bg-gradient-to-b ${backgroundFrom} ${backgroundTo}  flex w-full h-full `}
+			className=" flex w-full h-full md:h-screen "
 		>
-			<article className="relative grid grid-cols-2 w-full justify-center min-h-[50rem] items-center">
-				{!isOdd && (
-					<div className="flex flex-col gap-4 p-10 justify-center items-end">
+			<article className="relative grid grid-cols-1 md:grid-cols-2 gap-4 w-full justify-center items-center p-4">
+				{!isOdd && screenSize !== "sm" && screenSize !== "xs" && (
+					<div className="flex flex-col gap-4 justify-center items-end">
 						<div>
 							<p>Featured Project</p>
 							<h4 className="text-4xl ">{title}</h4>
@@ -88,24 +90,26 @@ const ProjectCards: React.FC<ProjectCardProps> = ({
 						<p>{description}</p>
 					</div>
 				)}
-				<div className=" overflow-hidden flex justify-center items-center relative w-full h-full">
+				<div className="overflow-hidden flex justify-center items-center relative ">
 					<motion.div
+						aria-hidden
 						custom={isOdd}
 						style={{ position: "absolute" }}
 						variants={wrapperVariants1}
 						ref={wrapperRef1}
 						initial="initial"
 						animate={isHalfway ? "animate" : "initial"}
-						className={`absolute block inset-y-24 inset-x-0 z-10 ${wrapper1Bg}`}
+						className={`absolute block inset-0 z-10 ${wrapper1Bg}`}
 					></motion.div>
 					<motion.div
+						aria-hidden
 						custom={isOdd}
 						style={{ position: "absolute" }}
 						variants={wrapperVariants}
 						ref={wrapperRef}
 						initial="initial"
 						animate={isHalfway ? "animate" : "initial"}
-						className={`absolute inset-y-24 inset-x-0 z-10 ${wrapper2Bg}`}
+						className={`absolute inset-0 z-10 ${wrapper2Bg}`}
 					></motion.div>
 					<motion.figure
 						custom={isOdd}
@@ -113,10 +117,10 @@ const ProjectCards: React.FC<ProjectCardProps> = ({
 						ref={imageRef}
 						initial="initial"
 						animate={isHalfway ? "animate" : "initial"}
-						className="absolute inset-y-24 inset-x-0  "
+						className="flex inset-0 "
 					>
 						<img
-							className={`w-full h-full object-cover ${
+							className={`w-full h-full aspect-video ${
 								isOdd ? "object-right" : "object-left"
 							}`}
 							src={imageUrl}
@@ -124,15 +128,22 @@ const ProjectCards: React.FC<ProjectCardProps> = ({
 						/>
 					</motion.figure>
 				</div>
-				{isOdd && (
-					<div className="flex flex-col gap-4 p-10 justify-center ">
-						<div>
-							<p>Featured Project</p>
-							<h4 className="text-4xl ">{title}</h4>
-						</div>
-
+				{/* Small screens: Always render description below the image */}
+				{screenSize === "sm" || screenSize === "xs" ? (
+					<div className="flex flex-col gap-4 justify-center py-12">
+						<p>Featured Project</p>
+						<h4 className="text-3xl md:text-4xl">{title}</h4>
 						<p>{description}</p>
 					</div>
+				) : (
+					// Large screens: Zigzag layout for even items
+					isOdd && (
+						<div className="flex flex-col gap-4 justify-center py-12">
+							<p>Featured Project</p>
+							<h4 className="text-3xl md:text-4xl">{title}</h4>
+							<p>{description}</p>
+						</div>
+					)
 				)}
 			</article>
 		</li>

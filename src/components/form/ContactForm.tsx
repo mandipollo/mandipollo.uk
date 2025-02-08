@@ -34,18 +34,11 @@ const ContactForm = () => {
 		}
 	};
 	return (
-		<section className="flex gap-4 z-10 flex-col max-w-[40em] shadow-lg rounded-md w-full text-xs text-gray-400 ">
-			<div className="grid grid-cols-2">
-				<div className="flex justify-center items-center p-4">
-					<button className="text-md text-gray-200">REQUEST A QUOTE</button>
-				</div>
-				<div className="flex justify-center items-center bg-transparent p-4"></div>
-			</div>
-
+		<section className="flex translate-y-2 gap-4 flex-col max-w-[40em] rounded-md w-full bg-[#1F1F1F] text-xs text-gray-400 ">
 			<form
 				aria-label="Submit message"
 				id="form"
-				className="flex w-full flex-col gap-4 p-8 "
+				className="flex w-full flex-col gap-4 p-2 md:p-8 "
 				ref={form}
 				onSubmit={sendEmail}
 			>

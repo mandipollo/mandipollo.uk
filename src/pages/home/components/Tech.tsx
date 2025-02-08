@@ -4,17 +4,13 @@ import SkillButton from "../../../components/ui/SkillButton";
 
 const Tech: React.FC = () => {
 	return (
-		<section className="relative flex flex-col py-20 h-screen justify-center items-center gap-4 px-24 bg-gray-100">
+		<section className="relative flex flex-col py-20 justify-center items-center gap-4 max-w-4xl ">
 			<div className="text-center flex flex-col gap-2">
-				<p className="font-jetBrains text-xs text-gray-400">
-					First impressions matter more then ever
-				</p>
-				<h2 className="text-4xl">TECH STACKS & TOOLS </h2>
+				<h2 className="text-2xl md:text-4xl">TECH TOOLS </h2>
 			</div>
-			<div className="grid grid-cols-2 gap-2 bg-white p-4 w-full rounded-md text-sm">
+			<div className="grid grid-cols-1 md:grid-cols-2 gap-2 bg-white p-4 w-full rounded-md text-sm">
 				<div className="bg-gray-100 rounded-md flex flex-col gap-4 p-4">
-					<p className="text-xs text-gray-400 font-jetBrains">Projects:</p>
-					<div className="flex flex-row space-x-2">
+					<div className="flex flex-row flex-wrap gap-2">
 						<DottedButton
 							text="TASKDOM"
 							bgColor="bg-white"
@@ -27,13 +23,6 @@ const Tech: React.FC = () => {
 						/>
 						<DottedButton
 							text="ESTATE"
-							bgColor="bg-white"
-							borderColor="border-slate-300"
-						/>
-					</div>
-					<div className="flex flex-row space-x-2">
-						<DottedButton
-							text="MUSBRARY"
 							bgColor="bg-white"
 							borderColor="border-slate-300"
 						/>

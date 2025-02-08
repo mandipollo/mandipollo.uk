@@ -6,12 +6,12 @@ import ContactPage from "./components/ContactPage";
 
 const HomePage: React.FC = () => {
 	return (
-		<main className="flex h-full flex-col justify-center items-center bg-[#F7F7F7]">
+		<section className="flex w-full h-full flex-col justify-center items-center bg-[#F7F7F7]">
 			<Hero />
 			<Tech />
 			<Projects />
 			<ContactPage />
-		</main>
+		</section>
 	);
 };
 

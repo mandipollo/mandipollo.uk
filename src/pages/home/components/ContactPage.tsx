@@ -11,32 +11,24 @@ const ContactPage: React.FC = () => {
 		<section className="flex flex-row w-screen bg-black ">
 			<div
 				ref={leftLineRef}
-				className=" flex w-28 flex-col justify-between border-y-[0.5px] border-gray-600 "
+				className="hidden md:flex w-8 md:w-28 flex-col justify-between border-y-[0.5px] border-gray-600 p-1"
 			>
 				{Array.from({ length: numberOfThreads }).map((_, index) => (
 					<Thread index={index} key={index} />
 				))}
 			</div>
 			<div className=" flex flex-1 border-y-[0.5px] border-gray-600 flex-col">
-				<div className=" gap-10 relative pt-48 border-x-[0.5px] border-gray-600 flex-col  flex flex-1 justify-center items-center">
-					<video
-						className="w-full h-full absolute top-0 bottom-0 left-0"
-						src="https://res.cloudinary.com/dbg68gzpx/video/upload/v1738698815/bgVidoe_rhixav.mp4"
-						autoPlay
-						loop
-						muted
-					></video>
-					<div className="text-white max-w-[40em] w-full text-center text-4xl font-bold z-10">
-						<h4 className="">READY TO JOIN</h4>
+				<div className=" px-2 gap-10 relative pt-20 md:pt-48 border-x-[0.5px] border-gray-600 flex-col  flex flex-1 justify-center items-center">
+					<div className="text-white max-w-[40em] w-full text-center text-2xl md:text-4xl font-bold">
+						<h4 className="">HAVE A</h4>
 						<h4>
-							THE {""}
-							<span className="text-brightOrange">WINNING</span> SIDE?
+							<span className="text-brightOrange">PROJECT</span> IN MIND?
 						</h4>
 					</div>
 					<ContactForm />
 				</div>
 			</div>
-			<div className=" w-28 flex border-y-[0.5px] border-gray-600 "></div>
+			<div className=" w-8 md:w-28 hidden md:flex border-y-[0.5px] border-gray-600 p-1 "></div>
 		</section>
 	);
 };
