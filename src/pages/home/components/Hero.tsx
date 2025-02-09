@@ -26,11 +26,14 @@ const Hero: React.FC = () => {
 				</div>
 				<div className=" flex w-full justify-center items-center flex-1 border-x h-full">
 					<div className="flex justify-center items-center flex-col gap-2 flex-1 ">
-						<span className="text-2xl md:text-6xl font-extrabold">
-							MANDIP GURUNG
+						<span className="text-5xl md:text-6xl font-extrabold">
+							FREELANCE
 						</span>
-						<span className="text-2xl md:text-6xl font-semibold">
-							FRONTEND DEVELOPER
+						<span className="text-5xl md:text-6xl font-semibold">
+							FRONT-END
+						</span>
+						<span className="text-5xl md:text-6xl font-semibold">
+							DEVELOPER
 						</span>
 
 						<p className="font-thin">
@@ -49,8 +52,8 @@ const Hero: React.FC = () => {
 				</div>
 				<div className="h-full w-8 md:w-28"></div>
 			</div>
-			<div className="h-16 border-b flex justify-center items-center w-full ">
-				<div className=" w-8 md:w-28"></div>
+			<div className="h-16 border-b flex justify-center items-center ">
+				<div className=" w-20 md:w-40"></div>
 				<div className="border-x flex space-x-2 justify-center w-full h-full items-center font-jetBrains text-xs">
 					<p>LONDON</p>
 					<DottedSpan />
@@ -58,7 +61,7 @@ const Hero: React.FC = () => {
 					<DottedSpan />
 					<p>GMT</p>
 				</div>
-				<div className=" w-8 md:w-28 "></div>
+				<div className=" w-20 md:w-40 "></div>
 			</div>
 		</section>
 	);

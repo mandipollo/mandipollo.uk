@@ -13,20 +13,20 @@ const Navbar = () => {
 				<div className="hidden md:flex justify-center items-center font-jetBrains text-gray-500">
 					<ul className="flex flex-row space-x-4 items-center ">
 						<li>
-							<HoverButton text="TECH-STACK" />
+							<HoverButton text="TECH" />
 						</li>
 
 						<li>
 							<span className="h-4 w-1 flex border-l border-gray-400"></span>
 						</li>
 						<li className=" border-right">
-							<HoverButton text="OFFER" />
+							<HoverButton text="CASES" />
 						</li>
 						<li>
 							<span className="h-4 w-1 flex border-l border-gray-400"></span>
 						</li>
 						<li>
-							<HoverButton text="CASES" />
+							<HoverButton text="CONTACT" />
 						</li>
 					</ul>
 				</div>

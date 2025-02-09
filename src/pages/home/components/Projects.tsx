@@ -48,7 +48,7 @@ const Projects: React.FC = () => {
 
 	return (
 		<section className="flex flex-col w-full justify-center items-center gap-4 bg-gray-100 text-white">
-			<h2 className="text-2xl md:text-6xl text-black">PROJECTS</h2>
+			<h2 className="text-2xl md:text-4xl text-black">PROJECTS</h2>
 
 			<ul className="flex relative w-full justify-center items-center flex-col bg-gradient-to-b from-slate-600 to-black ">
 				{projectData.map(project => (

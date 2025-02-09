@@ -13,7 +13,7 @@ interface ProjectCardProps {
 
 const imageVariants = {
 	initial: (isOdd: boolean) => ({
-		x: isOdd ? "-80px" : "80px",
+		x: isOdd ? "-20px" : "20px",
 	}),
 	animate: (isOdd: boolean) => ({
 		x: isOdd ? "0px" : "0px", // Move left for odd, right for even
@@ -23,7 +23,7 @@ const imageVariants = {
 
 const wrapperVariants1 = {
 	initial: (isOdd: boolean) => ({
-		x: isOdd ? "-80px" : "80px",
+		x: isOdd ? "-20px" : "20px",
 		opacity: 1,
 	}),
 	animate: (isOdd: boolean) => ({
@@ -34,7 +34,7 @@ const wrapperVariants1 = {
 
 const wrapperVariants = {
 	initial: (isOdd: boolean) => ({
-		x: isOdd ? "-60px" : "60px", // Smaller initial offset
+		x: isOdd ? "-10px" : "10px", // Smaller initial offset
 		opacity: 1,
 	}),
 	animate: (isOdd: boolean) => ({
