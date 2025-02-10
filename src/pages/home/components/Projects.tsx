@@ -7,52 +7,61 @@ const Projects: React.FC = () => {
 		{
 			id: 1,
 			title: "UrbanThreads",
-			description: "E-commerce web app with guest/member and admin cms.",
+			description:
+				"UrbanThreads is a React TypeScript-based e-commerce platform designed for a smooth shopping experience. It features a dedicated admin CMS, enabling administrators to add/remove products, manage inventory, and process orders efficiently. Customers can checkout as guests or members.",
 			imageUrl:
 				"https://res.cloudinary.com/dbg68gzpx/image/upload/v1738499780/urbanThreads_pyth2i.webp",
 
 			wrapper1Bg: "bg-teal-900",
 			wrapper2Bg: "bg-red-900",
+			projectLink: "https://urbandthreads.netlify.app/",
 		},
 		{
 			id: 2,
 			title: "Lumshade",
-			description: "Webshop frontend",
+			description:
+				"A Next.js-based e-commerce platform currently in development, focusing on performance, scalability, and a seamless shopping experience.",
 			imageUrl:
 				"https://res.cloudinary.com/dbg68gzpx/image/upload/v1738499821/lumishade_sp32sm.webp",
 
 			wrapper1Bg: "bg-orange-900",
 			wrapper2Bg: "bg-green-900",
+			projectLink: "https://beauty-boutique-brown.vercel.app/",
 		},
 		{
 			id: 3,
 			title: "Estate",
-			description: "Real estate tracker",
+			description:
+				"A real estate app that fetches the latest property prices using the Rightmove API.Powered by Google Firebase for backend services.",
 			imageUrl:
 				"https://res.cloudinary.com/dbg68gzpx/image/upload/v1738499797/estate_el0plo.webp",
 
 			wrapper1Bg: "bg-cyan-900",
 			wrapper2Bg: "bg-blue-900",
+			projectLink: "https://estate-2aef8.web.app/",
 		},
 		{
 			id: 4,
 			title: "Taskdom",
-			description: "Team task management tool",
+			description:
+				"A project management system for task assignments and real-time chat. Built with Firebase Realtime Database for seamless collaboration and data syncing.",
 			imageUrl:
 				"https://res.cloudinary.com/dbg68gzpx/image/upload/v1738499810/taskdom_ibtmr6.webp",
 
 			wrapper1Bg: "bg-red-900",
 			wrapper2Bg: "bg-orange-900",
+			projectLink: "https://taskdom.web.app/",
 		},
 	];
 
 	return (
-		<section className="flex flex-col w-full justify-center items-center gap-4 bg-gray-100 text-white">
+		<section className="flex flex-col w-full justify-center items-center gap-4 bg-gray-100 text-white ">
 			<h2 className="text-2xl md:text-4xl text-black">PROJECTS</h2>
 
 			<ul className="flex relative w-full justify-center items-center flex-col bg-gradient-to-b from-slate-600 to-black ">
 				{projectData.map(project => (
 					<ProjectCards
+						projectLink={project.projectLink}
 						key={project.id}
 						id={project.id}
 						title={project.title}

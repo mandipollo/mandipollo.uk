@@ -9,11 +9,12 @@ interface ProjectCardProps {
 	imageUrl: string;
 	wrapper1Bg: string;
 	wrapper2Bg: string;
+	projectLink: string;
 }
 
 const imageVariants = {
 	initial: (isOdd: boolean) => ({
-		x: isOdd ? "-20px" : "20px",
+		x: isOdd ? "20px" : "-20px",
 	}),
 	animate: (isOdd: boolean) => ({
 		x: isOdd ? "0px" : "0px", // Move left for odd, right for even
@@ -23,22 +24,22 @@ const imageVariants = {
 
 const wrapperVariants1 = {
 	initial: (isOdd: boolean) => ({
-		x: isOdd ? "-20px" : "20px",
+		x: isOdd ? "20px" : "-20px",
 		opacity: 1,
 	}),
 	animate: (isOdd: boolean) => ({
-		x: isOdd ? "-100%" : "100%", // Move left for odd, right for even
+		x: isOdd ? "100%" : "-100%", // Move left for odd, right for even
 		transition: { duration: 1, ease: "easeIn" },
 	}),
 };
 
 const wrapperVariants = {
 	initial: (isOdd: boolean) => ({
-		x: isOdd ? "-10px" : "10px", // Smaller initial offset
+		x: isOdd ? "10px" : "-10px", // Smaller initial offset
 		opacity: 1,
 	}),
 	animate: (isOdd: boolean) => ({
-		x: isOdd ? "-100%" : "100%", // Same direction as wrapper1
+		x: isOdd ? "100%" : "-100%", // Same direction as wrapper1
 		transition: { duration: 0.6, ease: "easeIn" },
 	}),
 };
@@ -50,6 +51,7 @@ const ProjectCards: React.FC<ProjectCardProps> = ({
 	imageUrl,
 	wrapper1Bg,
 	wrapper2Bg,
+	projectLink,
 }) => {
 	// get screen size
 
@@ -74,78 +76,108 @@ const ProjectCards: React.FC<ProjectCardProps> = ({
 	const wrapperRef1 = useRef<HTMLDivElement>(null);
 
 	return (
-		<li
-			role="article"
-			ref={containerRef}
-			className=" flex w-full h-full md:h-screen "
-		>
-			<article className="relative grid grid-cols-1 md:grid-cols-2 gap-4 w-full justify-center items-center p-4">
-				{!isOdd && screenSize !== "sm" && screenSize !== "xs" && (
-					<div className="flex flex-col gap-4 justify-center items-end">
-						<div>
-							<p>Featured Project</p>
-							<h4 className="text-4xl ">{title}</h4>
-						</div>
+		<li ref={containerRef} className=" flex w-full h-full md:min-h-screen ">
+			<a
+				target="_blank"
+				href={projectLink}
+				className="flex w-full h-full py-20"
+			>
+				<article className="relative grid grid-cols-1 md:grid-cols-2 gap-4 w-full px-4">
+					{isOdd && screenSize !== "sm" && screenSize !== "xs" && (
+						<div className="flex w-full justify-center ">
+							<div className="flex flex-col gap-4 justify-center items-end py-12 max-w-96">
+								<div className="flex flex-col w-full  ">
+									<h4 className="text-4xl ">{title}</h4>
+								</div>
 
-						<p>{description}</p>
+								<p>{description}</p>
+							</div>
+						</div>
+					)}
+					<div className="overflow-hidden flex  relative">
+						<motion.div
+							aria-hidden
+							custom={isOdd}
+							style={{ position: "absolute" }}
+							variants={wrapperVariants1}
+							ref={wrapperRef1}
+							initial="initial"
+							animate={isHalfway ? "animate" : "initial"}
+							className={`absolute block inset-0 z-10 ${wrapper1Bg}`}
+						></motion.div>
+						<motion.div
+							aria-hidden
+							custom={isOdd}
+							style={{ position: "absolute" }}
+							variants={wrapperVariants}
+							ref={wrapperRef}
+							initial="initial"
+							animate={isHalfway ? "animate" : "initial"}
+							className={`absolute inset-0 z-10 ${wrapper2Bg}`}
+						></motion.div>
+
+						{screenSize === "sm" || screenSize === "xs" ? (
+							<motion.figure
+								custom={isOdd}
+								variants={imageVariants}
+								ref={imageRef}
+								initial="initial"
+								animate={isHalfway ? "animate" : "initial"}
+								className="flex  "
+							>
+								<img
+									className={` h-full w-full   ${
+										isOdd ? "object-left" : "object-right"
+									}`}
+									src={imageUrl}
+									alt={title}
+								/>
+							</motion.figure>
+						) : (
+							<motion.figure
+								custom={isOdd}
+								variants={imageVariants}
+								ref={imageRef}
+								initial="initial"
+								animate={isHalfway ? "animate" : "initial"}
+								className="block object-cover absolute top-0 bottom-0  "
+							>
+								<img
+									className={` h-full w-full object-cover  ${
+										isOdd ? "object-left" : "object-right"
+									}`}
+									src={imageUrl}
+									alt={title}
+								/>
+							</motion.figure>
+						)}
 					</div>
-				)}
-				<div className="overflow-hidden flex justify-center items-center relative ">
-					<motion.div
-						aria-hidden
-						custom={isOdd}
-						style={{ position: "absolute" }}
-						variants={wrapperVariants1}
-						ref={wrapperRef1}
-						initial="initial"
-						animate={isHalfway ? "animate" : "initial"}
-						className={`absolute block inset-0 z-10 ${wrapper1Bg}`}
-					></motion.div>
-					<motion.div
-						aria-hidden
-						custom={isOdd}
-						style={{ position: "absolute" }}
-						variants={wrapperVariants}
-						ref={wrapperRef}
-						initial="initial"
-						animate={isHalfway ? "animate" : "initial"}
-						className={`absolute inset-0 z-10 ${wrapper2Bg}`}
-					></motion.div>
-					<motion.figure
-						custom={isOdd}
-						variants={imageVariants}
-						ref={imageRef}
-						initial="initial"
-						animate={isHalfway ? "animate" : "initial"}
-						className="flex inset-0 "
-					>
-						<img
-							className={`w-full h-full aspect-video ${
-								isOdd ? "object-right" : "object-left"
-							}`}
-							src={imageUrl}
-							alt={title}
-						/>
-					</motion.figure>
-				</div>
-				{/* Small screens: Always render description below the image */}
-				{screenSize === "sm" || screenSize === "xs" ? (
-					<div className="flex flex-col gap-4 justify-center py-12">
-						<p>Featured Project</p>
-						<h4 className="text-3xl md:text-4xl">{title}</h4>
-						<p>{description}</p>
-					</div>
-				) : (
-					// Large screens: Zigzag layout for even items
-					isOdd && (
-						<div className="flex flex-col gap-4 justify-center py-12">
-							<p>Featured Project</p>
-							<h4 className="text-3xl md:text-4xl">{title}</h4>
+					{/* Small screens: Always render description below the image */}
+					{screenSize === "sm" || screenSize === "xs" ? (
+						<div className="flex flex-col gap-4 justify-center py-12  max-w-96">
+							<div>
+								<p>Featured Project</p>
+								<h4 className="text-4xl ">{title}</h4>
+							</div>
+
 							<p>{description}</p>
 						</div>
-					)
-				)}
-			</article>
+					) : (
+						// Large screens: Zigzag layout for even items
+						!isOdd && (
+							<div className="flex w-full justify-center ">
+								<div className="flex flex-col gap-4 justify-center items-end py-12 max-w-96">
+									<div className="flex flex-col w-full  ">
+										<h4 className="text-4xl ">{title}</h4>
+									</div>
+
+									<p>{description}</p>
+								</div>
+							</div>
+						)
+					)}
+				</article>
+			</a>
 		</li>
 	);
 };
