@@ -76,25 +76,18 @@ const ProjectCards: React.FC<ProjectCardProps> = ({
 	const wrapperRef1 = useRef<HTMLDivElement>(null);
 
 	return (
-		<li ref={containerRef} className=" flex w-full h-full md:min-h-screen ">
-			<a
-				target="_blank"
-				href={projectLink}
-				className="flex w-full h-full py-20"
-			>
-				<article className="relative grid grid-cols-1 md:grid-cols-2 gap-4 w-full px-4">
+		<li ref={containerRef} className=" flex w-full h-full text-sm ">
+			<a target="_blank" href={projectLink} className="flex w-full h-full ">
+				<article className="relative grid grid-cols-1 md:grid-cols-2 gap-4 px-4 md:px-0 py-20 w-full h-full ">
 					{isOdd && screenSize !== "sm" && screenSize !== "xs" && (
-						<div className="flex w-full justify-center ">
-							<div className="flex flex-col gap-4 justify-center items-end py-12 max-w-96">
-								<div className="flex flex-col w-full  ">
-									<h4 className="text-4xl ">{title}</h4>
-								</div>
-
+						<div className="flex w-full justify-center py-44 ">
+							<div className="flex flex-col gap-4 justify-center max-w-96">
+								<h4 className="text-2xl md:text-4xl ">{title}</h4>
 								<p>{description}</p>
 							</div>
 						</div>
 					)}
-					<div className="overflow-hidden flex  relative">
+					<div className="overflow-hidden flex relative">
 						<motion.div
 							aria-hidden
 							custom={isOdd}
@@ -140,7 +133,7 @@ const ProjectCards: React.FC<ProjectCardProps> = ({
 								ref={imageRef}
 								initial="initial"
 								animate={isHalfway ? "animate" : "initial"}
-								className="block object-cover absolute top-0 bottom-0  "
+								className="block object-cover absolute top-0 bottom-0 "
 							>
 								<img
 									className={` h-full w-full object-cover  ${
@@ -154,23 +147,16 @@ const ProjectCards: React.FC<ProjectCardProps> = ({
 					</div>
 					{/* Small screens: Always render description below the image */}
 					{screenSize === "sm" || screenSize === "xs" ? (
-						<div className="flex flex-col gap-4 justify-center py-12  max-w-96">
-							<div>
-								<p>Featured Project</p>
-								<h4 className="text-4xl ">{title}</h4>
-							</div>
-
+						<div className="flex flex-col gap-4 justify-center  max-w-md">
+							<h4 className="text-2xl md:text-4xl ">{title}</h4>
 							<p>{description}</p>
 						</div>
 					) : (
 						// Large screens: Zigzag layout for even items
 						!isOdd && (
-							<div className="flex w-full justify-center ">
-								<div className="flex flex-col gap-4 justify-center items-end py-12 max-w-96">
-									<div className="flex flex-col w-full  ">
-										<h4 className="text-4xl ">{title}</h4>
-									</div>
-
+							<div className="flex w-full justify-center py-44 ">
+								<div className="flex flex-col gap-4 justify-center max-w-96">
+									<h4 className="text-2xl md:text-4xl ">{title}</h4>
 									<p>{description}</p>
 								</div>
 							</div>

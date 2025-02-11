@@ -34,7 +34,7 @@ const ContactForm = () => {
 		}
 	};
 	return (
-		<section className="flex translate-y-2 gap-4 flex-col max-w-[40em] rounded-md w-full bg-[#1F1F1F] text-xs text-gray-400 ">
+		<div className="flex translate-y-2 gap-4 flex-col max-w-[40em] rounded-md w-full bg-[#1F1F1F] text-xs text-gray-400 ">
 			<form
 				aria-label="Submit message"
 				id="form"
@@ -93,7 +93,7 @@ const ContactForm = () => {
 					consent to the processing of your personal data.
 				</p>
 			</form>
-		</section>
+		</div>
 	);
 };
 

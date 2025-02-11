@@ -2,9 +2,14 @@ import React from "react";
 import DottedButton from "../../../components/ui/DottedButtons";
 import SkillButton from "../../../components/ui/SkillButton";
 
-const Tech: React.FC = () => {
+const Tech: React.FC<{ techRef: React.RefObject<HTMLElement> }> = ({
+	techRef,
+}) => {
 	return (
-		<section className="relative flex flex-col py-20 justify-center items-center gap-4 max-w-4xl ">
+		<section
+			ref={techRef}
+			className="relative flex flex-col py-20 justify-center items-center gap-4 max-w-4xl "
+		>
 			<div className="text-center flex flex-col gap-2">
 				<h2 className="text-2xl md:text-4xl">TECH TOOLS </h2>
 			</div>
@@ -57,7 +62,7 @@ const Tech: React.FC = () => {
 					/>
 					<SkillButton text="MONGOOSE" bgColor="bg-[#880000]" />
 					<SkillButton text="REACT-ROUTER" bgColor="bg-[#262626]" />
-					<SkillButton text="REDUX/TOOLKIT" bgColor="bg-[#764ABC]" />
+					<SkillButton text="REDUX/RTK" bgColor="bg-[#764ABC]" />
 					<SkillButton text="JEST/REACT" bgColor="bg-[#C21325]" />
 
 					<SkillButton text="CSS" bgColor="bg-[#1572B6]" />

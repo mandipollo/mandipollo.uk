@@ -3,12 +3,14 @@ import ContactForm from "../../../components/form/ContactForm";
 import useThreadHeight from "../../../hooks/useThreadHeight";
 import Thread from "../../../components/ui/Thread";
 
-const ContactPage: React.FC = () => {
+const ContactPage: React.FC<{ contactRef: React.RefObject<HTMLElement> }> = ({
+	contactRef,
+}) => {
 	const leftLineRef = useRef<HTMLDivElement>(null);
 
 	const { numberOfThreads } = useThreadHeight({ leftLineRef });
 	return (
-		<section className="flex flex-row w-screen bg-black ">
+		<section ref={contactRef} className="flex flex-row w-screen bg-black ">
 			<div
 				ref={leftLineRef}
 				className="hidden md:flex w-8 md:w-28 flex-col justify-between border-y-[0.5px] border-gray-600 p-1"

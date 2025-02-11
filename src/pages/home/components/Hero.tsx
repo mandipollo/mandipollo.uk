@@ -14,7 +14,7 @@ const Hero: React.FC = () => {
 	// local time state
 	const { time } = useLocalTime("Europe/London");
 	return (
-		<section className="min-w-screen min-h-screen flex flex-col h-full w-full text-center ">
+		<section className="min-w-screen h-screen flex flex-col w-full text-center  ">
 			<div className="mt-10 md:mt-14 w-full flex justify-center items-center flex-1 border-y flex-row ">
 				<div
 					ref={leftLineRef}
@@ -50,7 +50,7 @@ const Hero: React.FC = () => {
 						</div>
 					</div>
 				</div>
-				<div className="h-full w-8 md:w-28"></div>
+				<div className="h-full w-8 md:w-28 "></div>
 			</div>
 			<div className="h-16 border-b flex justify-center items-center ">
 				<div className=" w-20 md:w-40"></div>

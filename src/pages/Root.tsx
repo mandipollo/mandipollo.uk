@@ -4,13 +4,17 @@ import Footer from "../components/layout/Footer";
 
 const Root = () => {
 	return (
-		<main className="flex justify-center items-center relative flex-col w-full overflow-auto font-extralight ">
-			<Navbar />
-			<section className="relative w-full flex flex-1 flex-col justify-center items-center">
+		<div className="flex h-full justify-center items-center relative flex-col w-full overflow-auto font-extralight ">
+			<header className="fixed top-2 md:top-6 flex w-full z-50 justify-center items-center">
+				<Navbar />
+			</header>
+			<main className="relative w-full h-full flex flex-1 flex-col justify-center items-center">
 				<Outlet />
-			</section>
-			<Footer />
-		</main>
+			</main>
+			<footer className="flex flex-col w-full bg-black text-gray-400 text-xs font-jetBrains ">
+				<Footer />
+			</footer>
+		</div>
 	);
 };
 

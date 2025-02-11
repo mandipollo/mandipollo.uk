@@ -5,6 +5,7 @@ import Root from "./pages/Root";
 import HomePage from "./pages/home/HomePage";
 import Error from "./pages/error/Error";
 import { useEffect } from "react";
+import { RefProvider } from "./context/RefContext";
 
 function App() {
 	useEffect(() => {
@@ -18,17 +19,19 @@ function App() {
 	}, []);
 	return (
 		<main className="flex h-full w-full">
-			<BrowserRouter
-				future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-			>
-				<Routes>
-					<Route path="/" element={<Root />}>
-						<Route index element={<HomePage />}></Route>
-					</Route>
+			<RefProvider>
+				<BrowserRouter
+					future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+				>
+					<Routes>
+						<Route path="/" element={<Root />}>
+							<Route index element={<HomePage />}></Route>
+						</Route>
 
-					<Route path="*" element={<Error />} />
-				</Routes>
-			</BrowserRouter>
+						<Route path="*" element={<Error />} />
+					</Routes>
+				</BrowserRouter>
+			</RefProvider>
 		</main>
 	);
 }
