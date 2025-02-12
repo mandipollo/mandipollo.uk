@@ -8,6 +8,7 @@ export default {
 			},
 			fontFamily: {
 				jetBrains: ["jetBrains mono", "sans-serif"],
+				openSans: ["Open sans", "sans-serif"],
 			},
 			keyframes: {
 				bgMove: {

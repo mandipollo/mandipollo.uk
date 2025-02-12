@@ -8,7 +8,7 @@ export const RefProvider: React.FC<{ children: React.ReactNode }> = ({
 	children,
 }) => {
 	const refs = {
-		tech: useRef<HTMLElement>(null),
+		about: useRef<HTMLElement>(null),
 		cases: useRef<HTMLElement>(null),
 		contact: useRef<HTMLElement>(null),
 	};

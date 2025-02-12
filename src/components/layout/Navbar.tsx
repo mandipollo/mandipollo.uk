@@ -9,17 +9,17 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className=" flex flex-row justify-between text-xs mx-8 items-center max-w-4xl w-full bg-white p-4 rounded-3xl border shadow-sm">
+		<nav className=" flex flex-row justify-between mx-8 items-center max-w-4xl w-full p-2 md:p-4 rounded-3xl shadow-lg isolate backdrop-blur-md bg-white/0 ring-1 ring-black/5">
 			<div className="flex items-center">
-				<figure className="h-full w-full">
-					<img src="/logo.svg" alt="logo" className="w-8 h-8" />
+				<figure className="h-8 w-8">
+					<img src="/logo.svg" alt="logo" className=" h-full w-full" />
 				</figure>
 			</div>
 
-			<div className="hidden md:flex justify-center items-center font-jetBrains text-gray-500">
+			<div className="hidden md:flex justify-center items-center font-jetBrains text-gray-400">
 				<ul className="flex flex-row space-x-4 items-center ">
-					<li onClick={() => scrollToSection("tech")}>
-						<HoverButton text="TECH" />
+					<li onClick={() => scrollToSection("about")}>
+						<HoverButton text="ABOUT" />
 					</li>
 
 					<li>

@@ -13,6 +13,8 @@ const projectData = [
 
 		wrapper1Bg: "bg-teal-900",
 		wrapper2Bg: "bg-red-900",
+		bgColorFrom: "from-[#232323]",
+		bgColorTo: "to-[#2D2D2D]",
 		projectLink: "https://urbandthreads.netlify.app/",
 	},
 	{
@@ -25,6 +27,8 @@ const projectData = [
 
 		wrapper1Bg: "bg-orange-900",
 		wrapper2Bg: "bg-green-900",
+		bgColorFrom: "from-[#000018]",
+		bgColorTo: "to-[#00004E]",
 		projectLink: "https://beauty-boutique-brown.vercel.app/",
 	},
 	{
@@ -37,6 +41,8 @@ const projectData = [
 
 		wrapper1Bg: "bg-cyan-900",
 		wrapper2Bg: "bg-blue-900",
+		bgColorFrom: "from-[#002E40]",
+		bgColorTo: "to-[#005576]",
 		projectLink: "https://estate-2aef8.web.app/",
 	},
 	{
@@ -49,6 +55,8 @@ const projectData = [
 
 		wrapper1Bg: "bg-red-900",
 		wrapper2Bg: "bg-orange-900",
+		bgColorFrom: "from-[#0F544B]",
+		bgColorTo: "to-[#168174]",
 		projectLink: "https://taskdom.web.app/",
 	},
 ];
@@ -56,13 +64,12 @@ const Projects: React.FC<{ casesRef: React.RefObject<HTMLElement> }> = ({
 	casesRef,
 }) => {
 	return (
-		<section
-			ref={casesRef}
-			className="flex flex-col w-full justify-center items-center gap-4 bg-gray-100 text-white "
-		>
-			<h2 className="text-2xl md:text-4xl text-black">PROJECTS</h2>
+		<section ref={casesRef} className="flex items-center flex-col w-full ">
+			<div className="flex  w-full px-2 py-20 md:py-40 max-w-7xl ">
+				<h2 className="text-4xl md:text-7xl ">CASES</h2>
+			</div>
 
-			<ul className="flex relative w-full justify-center items-center flex-col bg-gradient-to-b from-slate-600 to-black ">
+			<ul className="flex relative w-full justify-center items-center flex-col text-white  ">
 				{projectData.map(project => (
 					<ProjectCards
 						projectLink={project.projectLink}
@@ -73,6 +80,8 @@ const Projects: React.FC<{ casesRef: React.RefObject<HTMLElement> }> = ({
 						description={project.description}
 						wrapper1Bg={project.wrapper1Bg}
 						wrapper2Bg={project.wrapper2Bg}
+						bgColorFrom={project.bgColorFrom}
+						bgColorTo={project.bgColorTo}
 					/>
 				))}
 			</ul>

@@ -22,7 +22,7 @@ const HoverButton = ({
 			type="button"
 			className={`${bgColor} ${textColor} ${borderRadius} ${hoverBgColor} relative inline-flex items-center justify-center overflow-hidden px-4 py-2 group`}
 		>
-			<span className=" flex flex-row transition-all duration-500 ease-in-out group-hover:opacity-0 group-hover:-translate-y-full">
+			<span className=" flex items-center flex-row transition-all duration-500 ease-in-out group-hover:opacity-0 group-hover:-translate-y-full">
 				{text}
 
 				{image && (

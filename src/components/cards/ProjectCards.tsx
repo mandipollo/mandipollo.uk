@@ -9,6 +9,8 @@ interface ProjectCardProps {
 	imageUrl: string;
 	wrapper1Bg: string;
 	wrapper2Bg: string;
+	bgColorFrom: string;
+	bgColorTo: string;
 	projectLink: string;
 }
 
@@ -51,6 +53,8 @@ const ProjectCards: React.FC<ProjectCardProps> = ({
 	imageUrl,
 	wrapper1Bg,
 	wrapper2Bg,
+	bgColorFrom,
+	bgColorTo,
 	projectLink,
 }) => {
 	// get screen size
@@ -76,8 +80,15 @@ const ProjectCards: React.FC<ProjectCardProps> = ({
 	const wrapperRef1 = useRef<HTMLDivElement>(null);
 
 	return (
-		<li ref={containerRef} className=" flex w-full h-full text-sm ">
-			<a target="_blank" href={projectLink} className="flex w-full h-full ">
+		<li
+			ref={containerRef}
+			className={`flex w-full h-full items-center justify-center bg-gradient-to-b ${bgColorFrom} ${bgColorTo} `}
+		>
+			<a
+				target="_blank"
+				href={projectLink}
+				className="flex w-full h-full max-w-[1800px]  "
+			>
 				<article className="relative grid grid-cols-1 md:grid-cols-2 gap-4 px-4 md:px-0 py-20 w-full h-full ">
 					{isOdd && screenSize !== "sm" && screenSize !== "xs" && (
 						<div className="flex w-full justify-center py-44 ">
