@@ -14,7 +14,7 @@ const Hero: React.FC = () => {
 	// local time state
 	const { time } = useLocalTime("Europe/London");
 	return (
-		<section className="min-w-screen h-screen flex flex-col w-full text-center bg-[#132F58]  text-white ">
+		<section className="min-w-screen h-screen flex flex-col w-full text-center bg-[#232323]  text-white ">
 			<div className="mt-8 md:mt-14 w-full flex justify-center items-center flex-1 border-y border-gray-600 flex-row ">
 				<div
 					ref={leftLineRef}

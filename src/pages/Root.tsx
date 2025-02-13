@@ -4,7 +4,7 @@ import Footer from "../components/layout/Footer";
 
 const Root = () => {
 	return (
-		<div className="flex h-full justify-center items-center relative flex-col w-full overflow-auto font-extralight font-openSans text-sm ">
+		<div className="flex h-full justify-center items-center relative flex-col w-full overflow-auto font-extralight font-openSans ">
 			<header className="fixed top-2 md:top-6 flex w-full z-50 justify-center items-center">
 				<Navbar />
 			</header>

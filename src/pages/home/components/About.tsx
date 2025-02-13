@@ -6,7 +6,7 @@ const About: React.FC<{ aboutRef: React.RefObject<HTMLElement> }> = ({
 }) => {
 	return (
 		<section
-			className="flex px-2 flex-col py-10 md:py-20 max-w-7xl w-full"
+			className="flex px-2 flex-col py-10 md:py-20 max-w-7xl w-full "
 			ref={aboutRef}
 		>
 			<div className="flex items-center py-20 md:py-40">

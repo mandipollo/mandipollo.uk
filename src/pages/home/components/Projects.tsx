@@ -41,8 +41,8 @@ const projectData = [
 
 		wrapper1Bg: "bg-cyan-900",
 		wrapper2Bg: "bg-blue-900",
-		bgColorFrom: "from-[#002E40]",
-		bgColorTo: "to-[#005576]",
+		bgColorFrom: "from-[#151C23]",
+		bgColorTo: "to-[#2A3843]",
 		projectLink: "https://estate-2aef8.web.app/",
 	},
 	{
@@ -55,8 +55,8 @@ const projectData = [
 
 		wrapper1Bg: "bg-red-900",
 		wrapper2Bg: "bg-orange-900",
-		bgColorFrom: "from-[#0F544B]",
-		bgColorTo: "to-[#168174]",
+		bgColorFrom: "from-[#40648D]",
+		bgColorTo: "to-[#3D6087]",
 		projectLink: "https://taskdom.web.app/",
 	},
 ];
@@ -64,9 +64,12 @@ const Projects: React.FC<{ casesRef: React.RefObject<HTMLElement> }> = ({
 	casesRef,
 }) => {
 	return (
-		<section ref={casesRef} className="flex items-center flex-col w-full ">
+		<section
+			ref={casesRef}
+			className="flex items-center flex-col w-full bg-[#232323] "
+		>
 			<div className="flex  w-full px-2 py-20 md:py-40 max-w-7xl ">
-				<h2 className="text-4xl md:text-7xl ">CASES</h2>
+				<h2 className="text-4xl md:text-7xl text-white ">CASES</h2>
 			</div>
 
 			<ul className="flex relative w-full justify-center items-center flex-col text-white  ">
