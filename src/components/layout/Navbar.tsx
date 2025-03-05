@@ -13,7 +13,9 @@ const Navbar = () => {
 	// set a function to track the scroll y position and update the height of the navbar accordingly
 	useEffect(() => {
 		const updatePosition = () => {
-			setScrollPosition(window.scrollY);
+			requestAnimationFrame(() => {
+				setScrollPosition(window.scrollY);
+			});
 		};
 
 		window.addEventListener("scroll", updatePosition);
@@ -27,16 +29,16 @@ const Navbar = () => {
 	// Calculate height with continuous transformation
 	const height = Math.max(minHeight, maxHeight - scrollPosition * shrinkFactor);
 	return (
-		<div
-			role="heading"
-			className=" flex flex-col w-full h-full justify-between items-center bg-white"
-		>
+		<div className=" flex flex-col w-full h-full justify-between items-center bg-white">
 			<Link
+				role="navigation"
+				aria-label="Directs user to home"
 				to="/"
 				style={{ height: height }}
 				className="flex w-full border-b group"
 			>
 				<figure
+					aria-label="Svg of developer's first name - Mandip"
 					role="img"
 					className="flex text-left items-start justify-start w-1/2 h-full "
 				>
@@ -80,6 +82,7 @@ const Navbar = () => {
 					</svg>
 				</figure>
 				<figure
+					aria-label="Svg of developer's surname - Gurung"
 					role="img"
 					className="flex text-left items-start justify-start w-1/2 h-full  "
 				>

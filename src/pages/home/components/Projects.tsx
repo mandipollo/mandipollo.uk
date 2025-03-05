@@ -85,6 +85,7 @@ const Projects = () => {
 											</p>
 										</div>
 										<button
+											aria-label="Close project details"
 											className="bg-gray-200 h-6 w-6 rounded-full p-1 block"
 											onClick={() => setSelectedProject(undefined)}
 										>
@@ -110,7 +111,12 @@ const Projects = () => {
 											{
 												label: "URL",
 												value: (
-													<a href={selectedProject.projectLink} target="_blank">
+													<a
+														rel="noopener noreferrer"
+														aria-label={`Visit ${selectedProject.title} project website`}
+														href={selectedProject.projectLink}
+														target="_blank"
+													>
 														{selectedProject.projectLink}
 													</a>
 												),

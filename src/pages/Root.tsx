@@ -8,7 +8,10 @@ const Root = () => {
 			<header className="fixed top-0 left-2 md:left-8 right-2 md:right-8 z-10 ">
 				<Navbar />
 			</header>
-			<main className="relative mt-[198px] w-full h-full flex flex-1 flex-col justify-center items-center">
+			<main
+				id="main-content"
+				className="relative mt-[198px] w-full h-full flex flex-1 flex-col justify-center items-center"
+			>
 				<Outlet />
 			</main>
 			<footer className="flex flex-col w-full text-xs ">

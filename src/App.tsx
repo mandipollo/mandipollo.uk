@@ -5,7 +5,6 @@ import Root from "./pages/Root";
 import HomePage from "./pages/home/HomePage";
 import Error from "./pages/error/Error";
 import { useEffect } from "react";
-import { RefProvider } from "./context/RefContext";
 import ProjectPage from "./pages/projects/ProjectPage";
 
 function App() {
@@ -21,23 +20,18 @@ function App() {
 
 	return (
 		<main className="flex h-full w-full">
-			<RefProvider>
-				<BrowserRouter
-					future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-				>
-					<Routes>
-						<Route path="/" element={<Root />}>
-							<Route index element={<HomePage />}></Route>
-							<Route
-								path="project/:projectID"
-								element={<ProjectPage />}
-							></Route>
-						</Route>
+			<BrowserRouter
+				future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+			>
+				<Routes>
+					<Route path="/" element={<Root />}>
+						<Route index element={<HomePage />}></Route>
+						<Route path="project/:projectID" element={<ProjectPage />}></Route>
+					</Route>
 
-						<Route path="*" element={<Error />} />
-					</Routes>
-				</BrowserRouter>
-			</RefProvider>
+					<Route path="*" element={<Error />} />
+				</Routes>
+			</BrowserRouter>
 		</main>
 	);
 }

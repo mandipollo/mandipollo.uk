@@ -74,14 +74,15 @@ const ContactForm = () => {
 
 				<button
 					disabled={isSubmitting}
-					aria-label="submit form button"
-					className=" bg-black rounded-3xl p-3 text-white  "
+					aria-live="assertive"
+					aria-label={isSuccess ? "Thank you, message sent" : "Send message"}
+					className=" bg-black rounded-3xl p-3 text-white "
 				>
-					{isSuccess ? "THANK YOU" : "SEND MESSAGE"}
+					{isSuccess ? "THANK YOU, MESSAGE SENT" : "SEND MESSAGE"}
 				</button>
-				<p className="text-xs">
-					By clicking this button, you agree to the site's Privacy Policy and
-					consent to the processing of your personal data.
+				<p className="text-xs" role="contentinfo">
+					By clicking this button, you agree to the site&apos;s Privacy Policy
+					and consent to the processing of your personal data.
 				</p>
 			</form>
 		</div>
