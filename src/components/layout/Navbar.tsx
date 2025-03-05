@@ -1,56 +1,145 @@
-import HoverButton from "../ui/HoverButton";
-import { useRefContext } from "../../context/RefContext";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import useLocalTime from "../../hooks/useLocalTime";
+import DottedSpan from "../ui/DottedSpan";
 
 const Navbar = () => {
-	const refs = useRefContext();
+	// local time
 
-	const scrollToSection = (section: keyof typeof refs) => {
-		refs[section]?.current?.scrollIntoView({ behavior: "smooth" });
-	};
+	const { time } = useLocalTime("Europe/London");
+	// controlled position
+	const [scrollPosition, setScrollPosition] = useState<number>(window.scrollY);
 
+	// set a function to track the scroll y position and update the height of the navbar accordingly
+	useEffect(() => {
+		const updatePosition = () => {
+			setScrollPosition(window.scrollY);
+		};
+
+		window.addEventListener("scroll", updatePosition);
+
+		return () => window.removeEventListener("scroll", updatePosition);
+	}, []);
+
+	const minHeight = 40;
+	const maxHeight = 120;
+	const shrinkFactor = 0.5;
+	// Calculate height with continuous transformation
+	const height = Math.max(minHeight, maxHeight - scrollPosition * shrinkFactor);
 	return (
-		<nav className=" flex flex-row justify-between mx-8 items-center max-w-4xl w-full p-2 md:p-4 rounded-3xl shadow-lg isolate backdrop-blur-md bg-white/0 ring-1 ring-black/5">
-			<div className="flex items-center">
-				<figure className="h-8 w-8">
-					<img src="/logo.svg" alt="logo" className=" h-full w-full" />
-				</figure>
-			</div>
-
-			<div className="hidden md:flex justify-center items-center font-jetBrains text-gray-400">
-				<ul className="flex flex-row space-x-4 items-center ">
-					<li onClick={() => scrollToSection("about")}>
-						<HoverButton text="ABOUT" />
-					</li>
-
-					<li>
-						<span className="h-4 w-1 flex border-l border-gray-400"></span>
-					</li>
-					<li
-						onClick={() => scrollToSection("cases")}
-						className=" border-right"
+		<div
+			role="heading"
+			className=" flex flex-col w-full h-full justify-between items-center bg-white"
+		>
+			<Link
+				to="/"
+				style={{ height: height }}
+				className="flex w-full border-b group"
+			>
+				<figure
+					role="img"
+					className="flex text-left items-start justify-start w-1/2 h-full "
+				>
+					<svg
+						style={{
+							transform: `scale(${Math.max(0.5, 1 - scrollPosition * 0.003)})`,
+						}}
+						className="h-full origin-left "
+						viewBox="0 0 130 23"
+						fill="none"
 					>
-						<HoverButton text="CASES" />
-					</li>
-					<li>
-						<span className="h-4 w-1 flex border-l border-gray-400"></span>
-					</li>
-					<li onClick={() => scrollToSection("contact")}>
-						<HoverButton text="CONTACT" />
-					</li>
-				</ul>
+						<path
+							className="hidden group-hover:block"
+							d="M120.766 0.15625C123.714 0.15625 125.865 0.791667 127.219 2.0625C128.573 3.32292 129.25 5.0625 129.25 7.28125C129.25 8.28125 129.099 9.23958 128.797 10.1562C128.495 11.0625 128 11.8698 127.312 12.5781C126.635 13.2865 125.729 13.849 124.594 14.2656C123.458 14.6719 122.057 14.875 120.391 14.875H118.312V23H113.469V0.15625H120.766ZM120.516 4.125H118.312V10.9062H119.906C120.812 10.9062 121.599 10.7865 122.266 10.5469C122.932 10.3073 123.448 9.93229 123.812 9.42188C124.177 8.91146 124.359 8.25521 124.359 7.45312C124.359 6.32812 124.047 5.49479 123.422 4.95312C122.797 4.40104 121.828 4.125 120.516 4.125Z"
+							fill="black"
+						/>
+						<path
+							className="hidden group-hover:block"
+							d="M102.875 23V0.15625H107.719V23H102.875Z"
+							fill="black"
+						/>
+						<path
+							className="hidden group-hover:block"
+							d="M98.1406 11.3594C98.1406 13.9323 97.6458 16.0833 96.6562 17.8125C95.6771 19.5312 94.2552 20.8281 92.3906 21.7031C90.526 22.5677 88.2812 23 85.6562 23H79.1875V0.15625H86.3594C88.7552 0.15625 90.8333 0.583333 92.5938 1.4375C94.3542 2.28125 95.7188 3.53646 96.6875 5.20312C97.6562 6.85938 98.1406 8.91146 98.1406 11.3594ZM93.1094 11.4844C93.1094 9.79688 92.8594 8.41146 92.3594 7.32812C91.8698 6.23438 91.1406 5.42708 90.1719 4.90625C89.2135 4.38542 88.026 4.125 86.6094 4.125H84.0312V19H86.1094C88.474 19 90.2292 18.3698 91.375 17.1094C92.5312 15.849 93.1094 13.974 93.1094 11.4844Z"
+							fill="black"
+						/>
+						<path
+							className="hidden group-hover:block"
+							d="M73.4219 23H67.2656L57.3281 5.71875H57.1875C57.2292 6.4375 57.2656 7.16146 57.2969 7.89062C57.3281 8.61979 57.3594 9.34896 57.3906 10.0781C57.4219 10.7969 57.4531 11.5208 57.4844 12.25V23H53.1562V0.15625H59.2656L69.1875 17.2656H69.2969C69.276 16.5573 69.25 15.8542 69.2188 15.1562C69.1875 14.4583 69.1562 13.7604 69.125 13.0625C69.1042 12.3646 69.0833 11.6667 69.0625 10.9688V0.15625H73.4219V23Z"
+							fill="black"
+						/>
+						<path
+							className="hidden group-hover:block"
+							d="M45.0469 23L43.3906 17.5625H35.0625L33.4062 23H28.1875L36.25 0.0625H42.1719L50.2656 23H45.0469ZM42.2344 13.5L40.5781 8.1875C40.474 7.83333 40.3333 7.38021 40.1562 6.82812C39.9896 6.26562 39.8177 5.69792 39.6406 5.125C39.474 4.54167 39.3385 4.03646 39.2344 3.60938C39.1302 4.03646 38.9844 4.56771 38.7969 5.20312C38.6198 5.82812 38.4479 6.42188 38.2812 6.98438C38.1146 7.54688 37.9948 7.94792 37.9219 8.1875L36.2812 13.5H42.2344Z"
+							fill="black"
+						/>
+						<path
+							d="M10.5469 23L5.04688 5.07812H4.90625C4.92708 5.50521 4.95833 6.15104 5 7.01562C5.05208 7.86979 5.09896 8.78125 5.14062 9.75C5.18229 10.7188 5.20312 11.5938 5.20312 12.375V23H0.875V0.15625H7.46875L12.875 17.625H12.9688L18.7031 0.15625H25.2969V23H20.7812V12.1875C20.7812 11.4688 20.7917 10.6406 20.8125 9.70312C20.8438 8.76562 20.8802 7.875 20.9219 7.03125C20.9635 6.17708 20.9948 5.53646 21.0156 5.10938H20.875L14.9844 23H10.5469Z"
+							fill="black"
+						/>
+					</svg>
+				</figure>
+				<figure
+					role="img"
+					className="flex text-left items-start justify-start w-1/2 h-full  "
+				>
+					<svg
+						style={{
+							transform: `scale(${Math.max(0.5, 1 - scrollPosition * 0.003)})`,
+						}}
+						className="h-full origin-left"
+						viewBox="0 0 139 25"
+						fill="none"
+					>
+						<path
+							className="hidden group-hover:block"
+							d="M129.266 11.1719H138.328V23.0156C137.13 23.4115 135.885 23.7292 134.594 23.9688C133.302 24.1979 131.839 24.3125 130.203 24.3125C127.932 24.3125 126.005 23.8646 124.422 22.9688C122.839 22.0729 121.635 20.75 120.812 19C119.99 17.25 119.578 15.099 119.578 12.5469C119.578 10.151 120.036 8.07812 120.953 6.32812C121.88 4.57812 123.229 3.22396 125 2.26562C126.781 1.30729 128.953 0.828125 131.516 0.828125C132.724 0.828125 133.917 0.958333 135.094 1.21875C136.271 1.47917 137.339 1.81771 138.297 2.23438L136.688 6.10938C135.99 5.75521 135.193 5.45833 134.297 5.21875C133.401 4.97917 132.464 4.85938 131.484 4.85938C130.078 4.85938 128.854 5.18229 127.812 5.82812C126.781 6.47396 125.979 7.38021 125.406 8.54688C124.844 9.70312 124.562 11.0677 124.562 12.6406C124.562 14.1302 124.766 15.4531 125.172 16.6094C125.578 17.7552 126.219 18.6562 127.094 19.3125C127.969 19.9583 129.109 20.2812 130.516 20.2812C131.203 20.2812 131.781 20.25 132.25 20.1875C132.729 20.1146 133.177 20.0417 133.594 19.9688V15.2031H129.266V11.1719Z"
+							fill="black"
+						/>
+						<path
+							className="hidden group-hover:block"
+							d="M114.828 24H108.672L98.7344 6.71875H98.5938C98.6354 7.4375 98.6719 8.16146 98.7031 8.89062C98.7344 9.61979 98.7656 10.349 98.7969 11.0781C98.8281 11.7969 98.8594 12.5208 98.8906 13.25V24H94.5625V1.15625H100.672L110.594 18.2656H110.703C110.682 17.5573 110.656 16.8542 110.625 16.1562C110.594 15.4583 110.562 14.7604 110.531 14.0625C110.51 13.3646 110.49 12.6667 110.469 11.9688V1.15625H114.828V24Z"
+							fill="black"
+						/>
+						<path
+							className="hidden group-hover:block"
+							d="M88.9688 1.15625V15.9375C88.9688 17.5104 88.6198 18.9323 87.9219 20.2031C87.2344 21.4635 86.1875 22.4635 84.7812 23.2031C83.3854 23.9427 81.625 24.3125 79.5 24.3125C76.4792 24.3125 74.1771 23.5417 72.5938 22C71.0104 20.4583 70.2188 18.4167 70.2188 15.875V1.15625H75.0469V15.1406C75.0469 17.026 75.4323 18.349 76.2031 19.1094C76.974 19.8698 78.1146 20.25 79.625 20.25C80.6875 20.25 81.5469 20.0677 82.2031 19.7031C82.8698 19.3385 83.3594 18.776 83.6719 18.0156C83.9844 17.2552 84.1406 16.2865 84.1406 15.1094V1.15625H88.9688Z"
+							fill="black"
+						/>
+						<path
+							className="hidden group-hover:block"
+							d="M55.9062 1.15625C57.9792 1.15625 59.6875 1.40625 61.0312 1.90625C62.3854 2.40625 63.3906 3.16146 64.0469 4.17188C64.7031 5.18229 65.0312 6.45833 65.0312 8C65.0312 9.04167 64.8333 9.95312 64.4375 10.7344C64.0417 11.5156 63.5208 12.1771 62.875 12.7188C62.2292 13.2604 61.5312 13.7031 60.7812 14.0469L67.5 24H62.125L56.6719 15.2344H54.0938V24H49.25V1.15625H55.9062ZM55.5625 5.125H54.0938V11.2969H55.6562C57.2604 11.2969 58.4062 11.0312 59.0938 10.5C59.7917 9.95833 60.1406 9.16667 60.1406 8.125C60.1406 7.04167 59.7656 6.27083 59.0156 5.8125C58.276 5.35417 57.125 5.125 55.5625 5.125Z"
+							fill="black"
+						/>
+						<path
+							className="hidden group-hover:block"
+							d="M43.6562 1.15625V15.9375C43.6562 17.5104 43.3073 18.9323 42.6094 20.2031C41.9219 21.4635 40.875 22.4635 39.4688 23.2031C38.0729 23.9427 36.3125 24.3125 34.1875 24.3125C31.1667 24.3125 28.8646 23.5417 27.2812 22C25.6979 20.4583 24.9062 18.4167 24.9062 15.875V1.15625H29.7344V15.1406C29.7344 17.026 30.1198 18.349 30.8906 19.1094C31.6615 19.8698 32.8021 20.25 34.3125 20.25C35.375 20.25 36.2344 20.0677 36.8906 19.7031C37.5573 19.3385 38.0469 18.776 38.3594 18.0156C38.6719 17.2552 38.8281 16.2865 38.8281 15.1094V1.15625H43.6562Z"
+							fill="black"
+						/>
+						<path
+							d="M10.5469 11.1719H19.6094V23.0156C18.4115 23.4115 17.1667 23.7292 15.875 23.9688C14.5833 24.1979 13.1198 24.3125 11.4844 24.3125C9.21354 24.3125 7.28646 23.8646 5.70312 22.9688C4.11979 22.0729 2.91667 20.75 2.09375 19C1.27083 17.25 0.859375 15.099 0.859375 12.5469C0.859375 10.151 1.31771 8.07812 2.23438 6.32812C3.16146 4.57812 4.51042 3.22396 6.28125 2.26562C8.0625 1.30729 10.2344 0.828125 12.7969 0.828125C14.0052 0.828125 15.1979 0.958333 16.375 1.21875C17.5521 1.47917 18.6198 1.81771 19.5781 2.23438L17.9688 6.10938C17.2708 5.75521 16.474 5.45833 15.5781 5.21875C14.6823 4.97917 13.7448 4.85938 12.7656 4.85938C11.3594 4.85938 10.1354 5.18229 9.09375 5.82812C8.0625 6.47396 7.26042 7.38021 6.6875 8.54688C6.125 9.70312 5.84375 11.0677 5.84375 12.6406C5.84375 14.1302 6.04688 15.4531 6.45312 16.6094C6.85938 17.7552 7.5 18.6562 8.375 19.3125C9.25 19.9583 10.3906 20.2812 11.7969 20.2812C12.4844 20.2812 13.0625 20.25 13.5312 20.1875C14.0104 20.1146 14.4583 20.0417 14.875 19.9688V15.2031H10.5469V11.1719Z"
+							fill="black"
+						/>
+					</svg>
+				</figure>
+			</Link>
+			<div className="grid grid-cols-2 py-2 w-full text-xs items-center justify-between text-gray-400">
+				<div>
+					<p>Independent</p>
+					<p> Developer</p>
+				</div>
+
+				<div className="flex items-end justify-end">
+					<div className="flex justify-center items-center gap-2">
+						<p>LONDON</p>
+						<DottedSpan />
+						<p>{time}</p>
+						<DottedSpan />
+						<p>GMT</p>
+					</div>
+				</div>
 			</div>
-			<div className="flex justify-end items-center">
-				<HoverButton
-					text="Work with us"
-					afterText="lets talk"
-					bgColor="bg-black"
-					textColor="text-white"
-					borderRadius="rounded-2xl"
-					image="/arrow-right.svg"
-					hoverBgColor="hover:bg-brightOrange"
-				/>
-			</div>
-		</nav>
+		</div>
 	);
 };
 

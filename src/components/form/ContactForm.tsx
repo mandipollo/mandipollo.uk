@@ -1,8 +1,9 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import ensureError from "../../utilities/ensureError";
+import getErrorMessage from "../../utilities/getError.tsx";
 
 const ContactForm = () => {
+	//
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 	const [isSuccess, setIsSuccess] = useState<boolean>(false);
 	const form = useRef<HTMLFormElement | null>(null);
@@ -27,14 +28,14 @@ const ContactForm = () => {
 			} else {
 				throw new Error(response.text);
 			}
-		} catch (err) {
-			ensureError(err);
+		} catch (err: unknown) {
+			getErrorMessage(err);
 		} finally {
 			setIsSubmitting(false);
 		}
 	};
 	return (
-		<div className="flex translate-y-2 gap-4 flex-col max-w-[40em] rounded-md w-full bg-[#1F1F1F] text-xs text-gray-400 ">
+		<div className="flex translate-y-6 gap-4 flex-col max-w-[40em] border rounded-md shadow-md w-full text-xs bg-gray-100">
 			<form
 				aria-label="Submit message"
 				id="form"
@@ -45,14 +46,14 @@ const ContactForm = () => {
 				<p>CONTACT INFORMATION</p>
 				<div className="flex gap-2 relative ">
 					<input
-						className="p-3 w-full outline-none rounded-md bg-[#424242] "
+						className="p-3 w-full outline-none rounded-md  "
 						id="name"
 						type="text"
 						required
 						placeholder="Full name"
 					/>
 					<input
-						className="p-3 w-full outline-none rounded-md bg-[#424242] "
+						className="p-3 w-full outline-none rounded-md  "
 						id="email"
 						type="email"
 						required
@@ -64,27 +65,17 @@ const ContactForm = () => {
 					<textarea
 						style={{ resize: "none" }}
 						required
-						className="p-3 w-full outline-none rounded-md bg-[#424242] "
+						className="p-3 w-full outline-none rounded-md  "
 						id="message"
 						name="message"
 						placeholder="Tell us about your project"
 					/>
 				</div>
 
-				<label htmlFor="budget">YOUR BUDGET</label>
-				<select
-					id="budget"
-					className="p-2 bg-[#424242] rounded-md outline-black"
-				>
-					<option value="">Select</option>
-					<option value="1000-5000">£1k-5k</option>
-					<option value="5000-10000">£5k-10k</option>
-					<option value="10000-50000">£10k-50k</option>
-				</select>
 				<button
 					disabled={isSubmitting}
 					aria-label="submit form button"
-					className=" bg-brightOrange rounded-3xl p-3 text-gray-200  "
+					className=" bg-black rounded-3xl p-3 text-white  "
 				>
 					{isSuccess ? "THANK YOU" : "SEND MESSAGE"}
 				</button>

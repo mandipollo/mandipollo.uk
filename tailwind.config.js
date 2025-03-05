@@ -4,7 +4,10 @@ export default {
 	theme: {
 		extend: {
 			colors: {
+				primaryTextColor: "#6B6B6B",
+				secondaryTextColor: "#999999",
 				brightOrange: "#FE4400",
+				secondayBgColor: "#F7F7F7",
 			},
 			fontFamily: {
 				jetBrains: ["jetBrains mono", "sans-serif"],

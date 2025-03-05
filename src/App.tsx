@@ -6,6 +6,7 @@ import HomePage from "./pages/home/HomePage";
 import Error from "./pages/error/Error";
 import { useEffect } from "react";
 import { RefProvider } from "./context/RefContext";
+import ProjectPage from "./pages/projects/ProjectPage";
 
 function App() {
 	useEffect(() => {
@@ -17,6 +18,7 @@ function App() {
 		}
 		requestAnimationFrame(raf);
 	}, []);
+
 	return (
 		<main className="flex h-full w-full">
 			<RefProvider>
@@ -26,6 +28,10 @@ function App() {
 					<Routes>
 						<Route path="/" element={<Root />}>
 							<Route index element={<HomePage />}></Route>
+							<Route
+								path="project/:projectID"
+								element={<ProjectPage />}
+							></Route>
 						</Route>
 
 						<Route path="*" element={<Error />} />

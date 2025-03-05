@@ -1,65 +1,78 @@
-import React, { useRef } from "react";
-import HoverButton from "../../../components/ui/HoverButton";
-import DottedSpan from "../../../components/ui/DottedSpan";
-import Thread from "../../../components/ui/Thread";
-import useThreadHeight from "../../../hooks/useThreadHeight";
-import useLocalTime from "../../../hooks/useLocalTime";
+import React from "react";
+import LabelSkill from "../../../components/ui/LabelSkill";
 
 const Hero: React.FC = () => {
-	// filter thread markings
-
-	const leftLineRef = useRef<HTMLDivElement>(null);
-	const { numberOfThreads } = useThreadHeight({ leftLineRef });
-
-	// local time state
-	const { time } = useLocalTime("Europe/London");
 	return (
-		<section className="min-w-screen h-screen flex flex-col w-full text-center bg-[#232323]  text-white ">
-			<div className="mt-8 md:mt-14 w-full flex justify-center items-center flex-1 border-y border-gray-600 flex-row ">
-				<div
-					ref={leftLineRef}
-					className="h-full w-8 md:w-28 relative flex flex-col items-stretch justify-between"
-				>
-					{Array.from({ length: numberOfThreads }).map((_, index) => (
-						<Thread index={index} key={index} />
-					))}
+		<section className="flex w-full py-36 ">
+			<div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full h-full border-t py-2">
+				<div className="flex flex-row justify-between md:justify-normal gap-4">
+					<div>
+						<p className="text-gray-400">Location</p>
+						<p>Farnborough,</p>
+						<p>United Kingdom</p>
+					</div>
+					<div>
+						<p className="text-gray-400">Contact</p>
+						<p>mandipollo65@gmail.com</p>
+					</div>
 				</div>
-				<div className=" flex w-full justify-center items-center flex-1 border-x border-gray-600 h-full">
-					<div className="flex justify-center items-center flex-col gap-2 flex-1 ">
-						<span className="text-5xl md:text-7xl font-extrabold">
-							FREELANCE
-						</span>
-						<span className="text-5xl md:text-7xl font-semibold">
-							FRONT-END
-						</span>
-						<span className="text-5xl md:text-7xl font-semibold">
-							DEVELOPER
-						</span>
+				<div className="flex ">
+					<div className="flex flex-col w-full max-w-md gap-4 ">
+						<p className="text-xl">
+							Hi, I&apos;m Mandip, a freelance web developer based in
+							Farnborough, UK.
+						</p>
+						<p>
+							I specialize in creating bespoke websites with a focus on user
+							accessibility and semantically correct HTML using modern
+							JavaScript or TypeScript, React, HTML, and CSS.
+						</p>
+						<p>Currently, I&apos;m strengthening my backend skills.</p>
+						<p>
+							When I&apos;m not coding, you&apos;ll find me working on my
+							aquascape or riding my E-Motorbike.
+						</p>
+						<div className="rounded-md  flex flex-wrap gap-2 text-white text-xs">
+							<LabelSkill text="JS" bgColor="bg-yellow-500" />
+							<LabelSkill text="TYPESCRIPT" bgColor="bg-[#234A84]" />
+							<LabelSkill text="REACT" bgColor="bg-[#61DAFB]" />
 
-						<p>Here to help you build functionally sound web applications</p>
-						<div className="flex flex-row space-x-2">
-							<HoverButton
-								hoverBgColor="hover:bg-brightOrange"
+							<LabelSkill
+								text="NEXTJS"
 								bgColor="bg-black"
 								textColor="text-white"
-								borderRadius="rounded-3xl"
-								text="BOOK A INTRO CALL"
-							></HoverButton>
+							/>
+
+							<LabelSkill text="NODEJS" bgColor="bg-[#339933]" />
+							<LabelSkill
+								text="EXPRESS"
+								bgColor="bg-black"
+								textColor="text-white"
+							/>
+							<LabelSkill
+								text="MONGODB"
+								bgColor="bg-black"
+								textColor="text-white"
+							/>
+							<LabelSkill text="MONGOOSE" bgColor="bg-[#880000]" />
+							<LabelSkill text="REACT-ROUTER" bgColor="bg-[#262626]" />
+							<LabelSkill text="REDUX/RTK" bgColor="bg-[#764ABC]" />
+							<LabelSkill text="JEST/REACT" bgColor="bg-[#C21325]" />
+
+							<LabelSkill text="CSS" bgColor="bg-[#1572B6]" />
+							<LabelSkill text="SASS/LESS" bgColor="bg-[#CC6699]" />
+							<LabelSkill text="TAILWIND" bgColor="bg-[#38BDF8]" />
+							<LabelSkill text="MATERIAL UI" bgColor="bg-[#0081CB]" />
+							<LabelSkill text="HTML5" bgColor="bg-[#E34F26]" />
+							<LabelSkill text="FRAMER MOTION" bgColor="bg-[#FF0050]" />
+
+							<LabelSkill text="GIT" bgColor="bg-[#F05032]" />
+							<LabelSkill text="GOOGLE CLOUD" bgColor="bg-[#4285F4]" />
+							<LabelSkill text="AWS" bgColor="bg-[#FF9900]" />
+							<LabelSkill text="CI/CD" bgColor="bg-[#262626]" />
 						</div>
 					</div>
 				</div>
-				<div className="h-full w-8 md:w-28 "></div>
-			</div>
-			<div className="h-16 border-b border-gray-600 flex justify-center items-center ">
-				<div className=" w-20 md:w-40"></div>
-				<div className="border-x border-gray-600 flex space-x-2 justify-center w-full h-full items-center font-jetBrains text-xs">
-					<p>LONDON</p>
-					<DottedSpan />
-					<p>{time}</p>
-					<DottedSpan />
-					<p>GMT</p>
-				</div>
-				<div className=" w-20 md:w-40 "></div>
 			</div>
 		</section>
 	);

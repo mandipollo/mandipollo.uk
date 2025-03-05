@@ -1,93 +1,136 @@
-import React from "react";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { projectData } from "../../../db/project-data";
+import { ProjectProps } from "../../../types/project-types";
 
-import ProjectCards from "../../../components/cards/ProjectCards";
+const Projects = () => {
+	const [selectedProject, setSelectedProject] = useState<
+		ProjectProps | undefined
+	>(undefined);
 
-const projectData = [
-	{
-		id: 1,
-		title: "UrbanThreads",
-		description:
-			"UrbanThreads is a React TypeScript-based e-commerce platform designed for a smooth shopping experience. It features a dedicated admin CMS, enabling administrators to add/remove products, manage inventory, and process orders efficiently. Customers can checkout as guests or members.",
-		imageUrl:
-			"https://res.cloudinary.com/dbg68gzpx/image/upload/v1738499780/urbanThreads_pyth2i.webp",
+	const projectsVariants = {
+		open: { opacity: 1 },
+		closed: { opacity: 0 },
+	};
 
-		wrapper1Bg: "bg-teal-900",
-		wrapper2Bg: "bg-red-900",
-		bgColorFrom: "from-[#232323]",
-		bgColorTo: "to-[#2D2D2D]",
-		projectLink: "https://urbandthreads.netlify.app/",
-	},
-	{
-		id: 2,
-		title: "Lumshade",
-		description:
-			"A Next.js-based e-commerce platform currently in development, focusing on performance, scalability, and a seamless shopping experience.",
-		imageUrl:
-			"https://res.cloudinary.com/dbg68gzpx/image/upload/v1738499821/lumishade_sp32sm.webp",
-
-		wrapper1Bg: "bg-orange-900",
-		wrapper2Bg: "bg-green-900",
-		bgColorFrom: "from-[#000018]",
-		bgColorTo: "to-[#00004E]",
-		projectLink: "https://beauty-boutique-brown.vercel.app/",
-	},
-	{
-		id: 3,
-		title: "Estate",
-		description:
-			"A real estate app that fetches the latest property prices using the Rightmove API.Powered by Google Firebase for backend services.",
-		imageUrl:
-			"https://res.cloudinary.com/dbg68gzpx/image/upload/v1738499797/estate_el0plo.webp",
-
-		wrapper1Bg: "bg-cyan-900",
-		wrapper2Bg: "bg-blue-900",
-		bgColorFrom: "from-[#151C23]",
-		bgColorTo: "to-[#2A3843]",
-		projectLink: "https://estate-2aef8.web.app/",
-	},
-	{
-		id: 4,
-		title: "Taskdom",
-		description:
-			"A project management system for task assignments and real-time chat. Built with Firebase Realtime Database for seamless collaboration and data syncing.",
-		imageUrl:
-			"https://res.cloudinary.com/dbg68gzpx/image/upload/v1738499810/taskdom_ibtmr6.webp",
-
-		wrapper1Bg: "bg-red-900",
-		wrapper2Bg: "bg-orange-900",
-		bgColorFrom: "from-[#40648D]",
-		bgColorTo: "to-[#3D6087]",
-		projectLink: "https://taskdom.web.app/",
-	},
-];
-const Projects: React.FC<{ casesRef: React.RefObject<HTMLElement> }> = ({
-	casesRef,
-}) => {
 	return (
-		<section
-			ref={casesRef}
-			className="flex items-center flex-col w-full bg-[#232323] "
-		>
-			<div className="flex  w-full px-2 py-20 md:py-40 max-w-7xl ">
-				<h2 className="text-4xl md:text-7xl text-white ">CASES</h2>
-			</div>
-
-			<ul className="flex relative w-full justify-center items-center flex-col text-white  ">
+		<section className="flex w-full">
+			<motion.ul
+				animate={selectedProject ? "closed" : "open"}
+				variants={projectsVariants}
+				className={`${
+					selectedProject ? "hidden" : "grid"
+				} grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4`}
+			>
 				{projectData.map(project => (
-					<ProjectCards
-						projectLink={project.projectLink}
+					<li
 						key={project.id}
-						id={project.id}
-						title={project.title}
-						imageUrl={project.imageUrl}
-						description={project.description}
-						wrapper1Bg={project.wrapper1Bg}
-						wrapper2Bg={project.wrapper2Bg}
-						bgColorFrom={project.bgColorFrom}
-						bgColorTo={project.bgColorTo}
-					/>
+						onClick={() => setSelectedProject(project)}
+						role="listitem"
+						className="flex flex-col gap-4 w-full h-full items-center justify-center border-t"
+					>
+						<div className="flex flex-col w-full py-2">
+							<p>{project.title}</p>
+							<p className="text-gray-400">{project.projectType}</p>
+						</div>
+						<div className="flex w-full h-full pt-16 px-16 bg-gray-100 rounded-md">
+							<motion.figure
+								layoutId={`project-${project.id}`}
+								className="flex aspect-[3/4] object-cover shadow-md rounded-md"
+							>
+								<img
+									className="w-full h-full"
+									src={project.imageUrl}
+									alt={project.title}
+								/>
+							</motion.figure>
+						</div>
+					</li>
 				))}
-			</ul>
+			</motion.ul>
+
+			{selectedProject && (
+				<AnimatePresence mode="wait">
+					<motion.section className="flex w-full h-full items-center justify-center bg-gray-100 bg-opacity-75 p-4">
+						<motion.div className="rounded-md w-full">
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+								{/* Image Animation */}
+								<motion.figure
+									transition={{
+										ease: [0.25, 1, 0.5, 1], // Custom cubic bezier for a slow start
+										duration: 0.8, // Adjust for a slightly longer animation
+									}}
+									layoutId={`project-${selectedProject.id}`}
+									className="flex aspect-[3/4] object-cover"
+								>
+									<img
+										className="w-full h-full"
+										src={selectedProject.imageUrl}
+										alt={selectedProject.title}
+									/>
+								</motion.figure>
+
+								{/* Project Info */}
+								<motion.div
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									transition={{ delay: 0.5 }}
+									className="flex flex-col"
+								>
+									<div className="flex flex-row justify-between">
+										<div>
+											<p>{selectedProject.title}</p>
+											<p className="text-gray-400">
+												{selectedProject.projectType}
+											</p>
+										</div>
+										<button
+											className="bg-gray-200 h-6 w-6 rounded-full p-1 block"
+											onClick={() => setSelectedProject(undefined)}
+										>
+											<img
+												src="/minus.svg"
+												alt="back action image"
+												className="h-full w-full"
+											/>
+										</button>
+									</div>
+
+									{/* Project Details List */}
+									<ul className="flex flex-col w-full mt-8">
+										{[
+											{ label: "ID", value: selectedProject.id },
+											{ label: "Year", value: selectedProject.year },
+											{
+												label: "Design",
+												value: "Independent Designer's Collective",
+											},
+											{ label: "Tech", value: selectedProject.tech },
+
+											{
+												label: "URL",
+												value: (
+													<a href={selectedProject.projectLink} target="_blank">
+														{selectedProject.projectLink}
+													</a>
+												),
+											},
+										].map((item, index) => (
+											<li
+												key={index}
+												className="grid grid-cols-2 border-t py-2"
+											>
+												<p>{item.label}</p>
+												<p className="text-gray-400">{item.value}</p>
+											</li>
+										))}
+									</ul>
+								</motion.div>
+							</div>
+						</motion.div>
+					</motion.section>
+				</AnimatePresence>
+			)}
 		</section>
 	);
 };
