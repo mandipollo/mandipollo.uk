@@ -102,10 +102,7 @@ const Projects = () => {
 										{[
 											{ label: "ID", value: selectedProject.id },
 											{ label: "Year", value: selectedProject.year },
-											{
-												label: "Design",
-												value: "Independent Designer's Collective",
-											},
+
 											{ label: "Tech", value: selectedProject.tech },
 
 											{
