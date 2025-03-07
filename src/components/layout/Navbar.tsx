@@ -127,9 +127,20 @@ const Navbar = () => {
 				</figure>
 			</Link>
 			<div className="grid grid-cols-2 py-2 w-full text-xs items-center justify-between text-gray-400">
-				<div>
-					<p>Independent</p>
-					<p> Developer</p>
+				<div className="flex flex-row gap-4">
+					<div>
+						<p>Independent</p>
+						<p> Developer</p>
+					</div>
+					<a href="https://github.com/mandipollo/" target="_blank">
+						<figure className="h-4 w-4">
+							<img
+								src="/github.svg"
+								alt="Github image link "
+								className="h-full w-full"
+							/>
+						</figure>
+					</a>
 				</div>
 
 				<div className="flex items-end justify-end">

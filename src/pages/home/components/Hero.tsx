@@ -19,15 +19,14 @@ const Hero: React.FC = () => {
 				<div className="flex ">
 					<div className="flex flex-col w-full max-w-md gap-4 ">
 						<p className="text-xl">
-							Hi, I&apos;m Mandip, a freelance web developer based in
+							Hi, I&apos;m Mandip, a Independent frontend developer based in
 							Farnborough, UK.
 						</p>
 						<p>
-							I specialize in creating bespoke websites with a focus on user
-							accessibility and semantically correct HTML using modern
+							I specialize in creating accessible websites using modern
 							JavaScript or TypeScript, React, HTML, and CSS.
 						</p>
-						<p>Currently, I&apos;m strengthening my backend skills.</p>
+						<p>Currently, I&apos;m battling with database and DSA</p>
 						<p>
 							When I&apos;m not coding, you&apos;ll find me working on my
 							aquascape or riding my E-Motorbike.
